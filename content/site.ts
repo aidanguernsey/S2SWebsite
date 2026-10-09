@@ -7,6 +7,8 @@ export const site = {
   tagline: "Premier Tenor-Bass A Cappella Ensemble at Miami University",
   description:
     "[One-sentence description of the group: style, size, what makes your sound yours.]",
+  // Homepage hero photo. Drop the file in /public and put its path here, e.g. "/group.jpg".
+  groupPhoto: "/group.jpeg",
   contactEmail: "[s2s@miamioh.edu]",
   socials: {
     instagram: "https://instagram.com/",

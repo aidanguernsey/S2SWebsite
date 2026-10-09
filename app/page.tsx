@@ -42,8 +42,15 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <div className="placeholder" style={{ aspectRatio: "4 / 3" }}>
-              [Group photo — add to /public and swap this out]
+            <div className="photo-wrap" style={{ aspectRatio: "4 / 3" }}>
+              {site.groupPhoto ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={site.groupPhoto} alt={`${site.name} group photo`} />
+              ) : (
+                <div className="placeholder" style={{ height: "100%" }}>
+                  [Group photo — set groupPhoto in content/site.ts]
+                </div>
+              )}
             </div>
             {latest && (
               <p style={{ fontSize: 16, marginTop: 16 }}>
