@@ -48,6 +48,7 @@ public/                  Images (member photos go in public/members/)
 | New exec board | Update `execRole` on each person. |
 | New concert | Add an entry to `content/events.ts`. It moves to "Past shows" automatically after the date. |
 | New video | Add an entry to `content/releases.ts` with the YouTube video ID (the part after `watch?v=`). |
+| New audio release | Add an entry to `content/releases.ts` with `spotifyUrl` set to the Spotify share link (track, album, or playlist). If there's no `youtubeId`, the card shows a Spotify player. |
 | New merch | Add an entry to `content/merch.ts` with a `buyUrl`. |
 
 Please get each person's OK on their bio and photo before publishing, and let alumni opt out.
@@ -100,5 +101,4 @@ Check with your student activities office about how student organizations may co
 - Move `content/` into a headless CMS (Sanity or Contentful) so exec can edit in a visual editor without touching code.
 - Admin page for gig requests with statuses (new / contacted / booked / declined), backed by a database such as Supabase.
 - Event RSVP or QR-code attendance check-in.
-- Spotify embed player on the Music page.
 - Image optimization with `next/image` once real photos are added.

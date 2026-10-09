@@ -13,7 +13,7 @@ export const site = {
   socials: {
     instagram: "https://instagram.com/",
     youtube: "https://youtube.com/",
-    spotify: "https://open.spotify.com/",
+    spotify: "https://open.spotify.com/artist/3TTjOxFfwV4Bdg4xluwSGy",
     tiktok: "https://tiktok.com/",
   },
   booking: {
