@@ -10,7 +10,7 @@ export const releases: Release[] = [
     releaseDate: "2026-10-02",
     youtubeId: "6gaG0arkF6E",
     arranger: "Ben Cappella",
-    soloists: ["Tom Terrel"],
+    soloists: ["Tom Terrell"],
   },
   {
     title: "Stay - Live",
