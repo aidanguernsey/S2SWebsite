@@ -6,12 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "shrink-photos": "node scripts/shrink-photos.mjs"
+    "shrink-photos": "node scripts/shrink-photos.mjs",
+    "seed": "node --env-file-if-exists=.env.local scripts/seed-sanity.mjs"
   },
   "dependencies": {
+    "@sanity/client": "^8.9.0",
     "next": "^16.0.0",
+    "next-sanity": "^13.3.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sanity": "^6.18.0",
+    "styled-components": "^6.5.3"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

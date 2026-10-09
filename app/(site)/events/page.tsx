@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pastEvents, upcomingEvents } from "@/content/events";
+import { getEvents, pastEvents, upcomingEvents } from "@/lib/content";
 import { DateBox, formatDate } from "@/components/EventBanner";
 import type { Event } from "@/lib/types";
 
@@ -25,9 +25,10 @@ function EventRow({ event, past }: { event: Event; past?: boolean }) {
   );
 }
 
-export default function EventsPage() {
-  const upcoming = upcomingEvents();
-  const past = pastEvents();
+export default async function EventsPage() {
+  const events = await getEvents();
+  const upcoming = upcomingEvents(events);
+  const past = pastEvents(events);
   return (
     <div className="container">
       <div className="page-title">

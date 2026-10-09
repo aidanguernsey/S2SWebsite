@@ -1,9 +1,15 @@
 import Link from "next/link";
-import { site } from "@/content/site";
-import { upcomingEvents } from "@/content/events";
-import { homepageReleases } from "@/content/releases";
-import { currentMembers, execBoard } from "@/content/members";
-import { merch } from "@/content/merch";
+import {
+  currentMembers,
+  execBoard,
+  getEvents,
+  getMembers,
+  getMerch,
+  getReleases,
+  getSite,
+  homepageReleases,
+  upcomingEvents,
+} from "@/lib/content";
 import { EventBanner } from "@/components/EventBanner";
 import { ReleaseCard } from "@/components/ReleaseCard";
 import { MemberCard } from "@/components/MemberCard";
@@ -12,14 +18,22 @@ import { BookSection } from "@/components/BookSection";
 // Re-check every hour so "next concert" stays current without a redeploy.
 export const revalidate = 3600;
 
-export default function Home() {
-  const next = upcomingEvents()[0];
-  const releases = homepageReleases().slice(0, 3);
+export default async function Home() {
+  const [site, events, allReleases, members, merch] = await Promise.all([
+    getSite(),
+    getEvents(),
+    getReleases(),
+    getMembers(),
+    getMerch(),
+  ]);
+  const next = upcomingEvents(events)[0];
+  const releases = homepageReleases(allReleases).slice(0, 3);
   const latest = releases[0];
+  const current = currentMembers(members);
   // Exec board first, then everyone else, five cards total.
   const featured = [
-    ...execBoard(),
-    ...currentMembers().filter((m) => !m.execRole),
+    ...execBoard(members),
+    ...current.filter((m) => !m.execRole),
   ].slice(0, 5);
 
   return (
@@ -48,7 +62,7 @@ export default function Home() {
                 <img src={site.groupPhoto} alt={`${site.name} group photo`} />
               ) : (
                 <div className="placeholder" style={{ height: "100%" }}>
-                  [Group photo — set groupPhoto in content/site.ts]
+                  [Group photo: add one in Studio → Site settings]
                 </div>
               )}
             </div>
@@ -86,7 +100,7 @@ export default function Home() {
             <div>
               <h2>Meet the voices</h2>
               <p className="lede">
-                {currentMembers().length} singers, one sound. Tap anyone to read their bio.
+                {current.length} singers, one sound. Tap anyone to read their bio.
               </p>
             </div>
             <Link href="/members" className="more">Meet the whole group →</Link>

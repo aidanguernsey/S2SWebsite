@@ -1,8 +1,8 @@
 import type { Member } from "@/lib/types";
 
-// One entry per person, current or alumni.
-// When someone graduates, change `status` to "alumni" and remove `execRole`.
-// Get each person's OK on their bio and photo before publishing.
+// Starter data. The live site reads from Sanity (edit at /studio); this file is
+// only copied in by `npm run seed` and shown when Sanity isn't configured.
+// Photos are paths under /public; `npm run seed` uploads them to Sanity.
 export const members: Member[] = [
   {
     slug: "sean-spezzano",
@@ -66,24 +66,3 @@ export const members: Member[] = [
     bio: "[Alumni bio placeholder: what they're up to now, if they'd like to share.]",
   },
 ];
-
-export const voicePartOrder = [
-  "Tenor I",
-  "Tenor II",
-  "Baritone",
-  "Bass",
-  "Vocal Percussion",
-] as const;
-
-export const currentMembers = () =>
-  members.filter((m) => m.status === "current");
-
-export const execBoard = () =>
-  members.filter((m) => m.status === "current" && m.execRole);
-
-export const alumni = () =>
-  members
-    .filter((m) => m.status === "alumni")
-    .sort((a, b) => b.classYear - a.classYear);
-
-export const getMember = (slug: string) => members.find((m) => m.slug === slug);

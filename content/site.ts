@@ -1,5 +1,8 @@
-// Group-wide settings. Edit these first.
-export const site = {
+import type { Site } from "@/lib/types";
+
+// Starter data. The live site reads from Sanity (edit at /studio); this file is
+// only copied in by `npm run seed` and shown when Sanity isn't configured.
+export const site: Site = {
   name: "Soul2Soul A Cappella",
   shortName: "S2S", // shown in the round logo badge
   school: "Miami University",
@@ -7,7 +10,7 @@ export const site = {
   tagline: "Premier Tenor-Bass A Cappella Ensemble at Miami University",
   description:
     "[One-sentence description of the group: style, size, what makes your sound yours.]",
-  // Homepage hero photo. Drop the file in /public and put its path here, e.g. "/group.jpg".
+  // Homepage hero photo, a path under /public. `npm run seed` uploads it to Sanity.
   groupPhoto: "/group.jpeg",
   contactEmail: "[s2s@miamioh.edu]",
   socials: {

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { merch } from "@/content/merch";
+import { getMerch } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Shop" };
 
-export default function ShopPage() {
+export default async function ShopPage() {
+  const merch = await getMerch();
   return (
     <div className="container">
       <div className="page-title">

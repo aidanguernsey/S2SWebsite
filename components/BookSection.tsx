@@ -1,8 +1,10 @@
-import { site } from "@/content/site";
+import { getSite } from "@/lib/content";
 import { GigRequestForm } from "./GigRequestForm";
 
-export function BookSection({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
+export async function BookSection({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
   const Heading = headingLevel;
+  const { booking } = await getSite();
+  const details = [booking.setLength, booking.travelArea, booking.rates].filter(Boolean);
   return (
     <section id="book" className="container">
       <div className="book">
@@ -14,11 +16,13 @@ export function BookSection({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2
             Weddings, campus events, holiday parties, singing valentines. Tell us
             about it and our business manager will get back to you.
           </p>
-          <ul>
-            <li>{site.booking.setLength}</li>
-            <li>{site.booking.travelArea}</li>
-            <li>{site.booking.rates}</li>
-          </ul>
+          {details.length > 0 && (
+            <ul>
+              {details.map((d) => (
+                <li key={d}>{d}</li>
+              ))}
+            </ul>
+          )}
         </div>
         <GigRequestForm />
       </div>

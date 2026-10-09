@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { sortedReleases } from "@/content/releases";
-import { site } from "@/content/site";
+import { getReleases, getSite } from "@/lib/content";
 import { ReleaseCard } from "@/components/ReleaseCard";
 import { spotifyEmbedUrl } from "@/lib/spotify";
 
 export const metadata: Metadata = { title: "Music" };
 
-export default function MusicPage() {
+export default async function MusicPage() {
+  const [site, releases] = await Promise.all([getSite(), getReleases()]);
   const artistEmbed = spotifyEmbedUrl(site.socials.spotify);
 
   return (
@@ -26,7 +26,7 @@ export default function MusicPage() {
         />
       )}
       <div className="grid" style={{ marginTop: 40 }}>
-        {sortedReleases().map((r) => (
+        {releases.map((r) => (
           <ReleaseCard key={r.title + r.releaseDate} release={r} />
         ))}
       </div>

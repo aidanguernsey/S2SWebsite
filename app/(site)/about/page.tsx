@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { site } from "@/content/site";
+import { getSite } from "@/lib/content";
 
 export const metadata: Metadata = { title: "About" };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const site = await getSite();
   return (
     <div className="container">
       <div className="page-title">

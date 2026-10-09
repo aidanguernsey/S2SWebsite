@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Event } from "@/lib/types";
+import { TIME_ZONE } from "@/lib/time";
 
 export const formatDate = (iso: string) =>
   new Date(iso).toLocaleString("en-US", {
@@ -8,14 +9,15 @@ export const formatDate = (iso: string) =>
     day: "numeric",
     hour: "numeric",
     minute: "2-digit",
+    timeZone: TIME_ZONE,
   });
 
 export function DateBox({ iso }: { iso: string }) {
   const d = new Date(iso);
   return (
     <div className="datebox" aria-hidden="true">
-      <span className="mon">{d.toLocaleString("en-US", { month: "short" })}</span>
-      <span className="day">{d.getDate()}</span>
+      <span className="mon">{d.toLocaleString("en-US", { month: "short", timeZone: TIME_ZONE })}</span>
+      <span className="day">{d.toLocaleString("en-US", { day: "numeric", timeZone: TIME_ZONE })}</span>
     </div>
   );
 }

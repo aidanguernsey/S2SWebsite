@@ -31,7 +31,7 @@ export function ReleaseCard({ release }: { release: Release }) {
         />
       ) : (
         <div className="placeholder ratio-16-9" style={{ background: "var(--ink)", color: "#9c978e" }}>
-          [Add a YouTube ID or Spotify link in content/releases.ts]
+          [Add a YouTube or Spotify link in the Studio]
         </div>
       )}
       <div>

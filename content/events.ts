@@ -1,6 +1,8 @@
 import type { Event } from "@/lib/types";
 
-// Past events move to the archive automatically once their date passes.
+// Starter data. The live site reads from Sanity (edit at /studio); this file is
+// only copied in by `npm run seed` and shown when Sanity isn't configured.
+// Dates are local time at Miami (Eastern); the seed converts them to UTC.
 export const events: Event[] = [
   {
     slug: "fall-concert-2026",
@@ -26,15 +28,3 @@ export const events: Event[] = [
     description: "[Description.]",
   },
 ];
-
-const byDate = (a: Event, b: Event) =>
-  new Date(a.date).getTime() - new Date(b.date).getTime();
-
-export const upcomingEvents = (now = new Date()) =>
-  events.filter((e) => new Date(e.date) >= now).sort(byDate);
-
-export const pastEvents = (now = new Date()) =>
-  events
-    .filter((e) => new Date(e.date) < now)
-    .sort(byDate)
-    .reverse();

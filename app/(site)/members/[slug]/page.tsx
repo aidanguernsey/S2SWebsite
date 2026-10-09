@@ -1,23 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getMember, members } from "@/content/members";
+import { getMember, getMembers } from "@/lib/content";
 import { MemberPhoto } from "@/components/MemberCard";
 
 type Props = { params: Promise<{ slug: string }> };
 
-// Pre-build one page per member at deploy time.
-export function generateStaticParams() {
-  return members.map((m) => ({ slug: m.slug }));
+// Pre-build one page per member at deploy time. Members added later in the
+// Studio get their page built on first visit.
+export async function generateStaticParams() {
+  return (await getMembers()).map((m) => ({ slug: m.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const member = getMember((await params).slug);
+  const member = await getMember((await params).slug);
   return member ? { title: member.name, description: member.bio.slice(0, 150) } : {};
 }
 
 export default async function MemberProfile({ params }: Props) {
-  const member = getMember((await params).slug);
+  const member = await getMember((await params).slug);
   if (!member) notFound();
 
   const facts = [

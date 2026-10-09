@@ -1,8 +1,7 @@
 import type { Release } from "@/lib/types";
 
-// Newest first is handled for you. For YouTube, paste only the video ID
-// (the part after "watch?v=" in the URL). Add `featured: true` to a release
-// to pin it to the top of the homepage regardless of its date.
+// Starter data. The live site reads from Sanity (edit at /studio); this file is
+// only copied in by `npm run seed` and shown when Sanity isn't configured.
 export const releases: Release[] = [
   {
     title: "End of Beginning",
@@ -25,15 +24,3 @@ export const releases: Release[] = [
     youtubeId: "",
   },
 ];
-
-export const sortedReleases = () =>
-  [...releases].sort(
-    (a, b) =>
-      new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime()
-  );
-
-// Homepage order: featured releases first, then newest.
-export const homepageReleases = () =>
-  sortedReleases().sort(
-    (a, b) => Number(!!b.featured) - Number(!!a.featured)
-  );

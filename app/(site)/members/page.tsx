@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { currentMembers, voicePartOrder } from "@/content/members";
+import { currentMembers, getMembers } from "@/lib/content";
+import { voiceParts } from "@/lib/types";
 import { MemberCard } from "@/components/MemberCard";
 import { MemberTabs } from "@/components/MemberTabs";
 
 export const metadata: Metadata = { title: "Members" };
 
-export default function MembersPage() {
-  const members = currentMembers();
+export default async function MembersPage() {
+  const members = currentMembers(await getMembers());
   return (
     <div className="container">
       <div className="page-title section-head">
@@ -16,7 +17,7 @@ export default function MembersPage() {
         </div>
         <MemberTabs active="/members" />
       </div>
-      {voicePartOrder.map((part) => {
+      {voiceParts.map((part) => {
         const group = members.filter((m) => m.voicePart === part);
         if (!group.length) return null;
         return (

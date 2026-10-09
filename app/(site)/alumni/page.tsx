@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { alumni } from "@/content/members";
+import { alumni, getMembers } from "@/lib/content";
 import { MemberCard } from "@/components/MemberCard";
 import { MemberTabs } from "@/components/MemberTabs";
 
 export const metadata: Metadata = { title: "Alumni" };
 
-export default function AlumniPage() {
-  const all = alumni();
+export default async function AlumniPage() {
+  const all = alumni(await getMembers());
   const years = [...new Set(all.map((m) => m.classYear))];
   return (
     <div className="container">
