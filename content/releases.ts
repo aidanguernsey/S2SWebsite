@@ -5,18 +5,17 @@ import type { Release } from "@/lib/types";
 // to pin it to the top of the homepage regardless of its date.
 export const releases: Release[] = [
   {
-    title: "[Song Title]",
+    title: "End of Beginning",
     kind: "Music video",
-    releaseDate: "2026-09-20",
-    youtubeId: "",
-    arranger: "[Arranger]",
-    soloists: ["[Soloist]"],
+    releaseDate: "2026-10-02",
+    youtubeId: "6gaG0arkF6E",
+    arranger: "Ben Cappella",
+    soloists: ["Tom Terrel"],
   },
   {
     title: "Stay - Live",
     kind: "Single",
-    releaseDate: "2026-10-01",
-    featured: true,
+    releaseDate: "2026-04-01",
     spotifyUrl: "https://open.spotify.com/track/505qpvbKIXLUE2E5uvInJj?si=ce181df7206a46f3",
   },
   {
