@@ -84,6 +84,20 @@ export default async function Home() {
 
       <section className="section container">
         <div className="section-head">
+          <h2>Soul2Soul Trailer</h2>
+        </div>
+        <iframe
+          className="embed"
+          src="https://www.youtube-nocookie.com/embed/5BAdZWY3c4o"
+          title="Soul2Soul Trailer"
+          loading="lazy"
+          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </section>
+
+      <section className="section container">
+        <div className="section-head">
           <h2>Music &amp; videos</h2>
           <Link href="/music" className="more">See every release →</Link>
         </div>
