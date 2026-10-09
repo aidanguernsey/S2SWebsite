@@ -5,17 +5,17 @@ import type { Member } from "@/lib/types";
 // Get each person's OK on their bio and photo before publishing.
 export const members: Member[] = [
   {
-    slug: "jane-doe",
-    name: "Jane Doe",
+    slug: "sean-spezzano",
+    name: "Sean Spezzano",
     voicePart: "Tenor I",
     status: "current",
-    classYear: 2027,
-    major: "[Major]",
-    hometown: "[Hometown]",
+    classYear: 2028,
+    major: "Biochemistry",
+    hometown: "Livonia, NY",
     execRole: "President",
-    bio: "[A few sentences in Jane's own words: how she found the group, favorite arrangement, what she does outside of singing.]",
-    solos: ["[Song Title]"],
-    funFact: "[Fun fact]",
+    bio: "[A few sentences in Sean's own words: how he found the group, favorite arrangement, what he does outside of singing.]",
+    solos: ["Good Old-Fashioned Lover Boy", "Movin' Out, Virtual Insanity"],
+    funFact: "Sean is studying abroad in London next Fall!",
   },
   {
     slug: "alex-rivera",
