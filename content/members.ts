@@ -13,8 +13,9 @@ export const members: Member[] = [
     major: "Biochemistry",
     hometown: "Livonia, NY",
     execRole: "President",
+    photo: "/members/sean-spezzano.jpg",
     bio: "[A few sentences in Sean's own words: how he found the group, favorite arrangement, what he does outside of singing.]",
-    solos: ["Good Old-Fashioned Lover Boy", "Movin' Out, Virtual Insanity"],
+    solos: ["Good Old-Fashioned Lover Boy", "Movin' Out", "Virtual Insanity"],
     funFact: "Sean is studying abroad in London next Fall!",
   },
   {
