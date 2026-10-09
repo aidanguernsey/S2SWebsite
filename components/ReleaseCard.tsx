@@ -4,8 +4,8 @@ import { spotifyEmbedUrl } from "@/lib/spotify";
 export function ReleaseCard({ release }: { release: Release }) {
   const spotifyEmbed = !release.youtubeId && spotifyEmbedUrl(release.spotifyUrl);
   const credits = [
-    release.arranger && `Arr. ${release.arranger}`,
     release.soloists?.length && `Solo: ${release.soloists.join(", ")}`,
+    release.arranger && `Arr. ${release.arranger}`,
   ]
     .filter(Boolean)
     .join(" · ");

@@ -1,4 +1,4 @@
-# [Group Name] website
+# S2S website
 
 The official site for [Group Name], [University]'s a cappella group: music and videos, upcoming concerts, merch, gig booking, group history, and a profile page for every current member and alum.
 
