@@ -68,6 +68,17 @@ GIG_REQUEST_FROM=Gig Requests <gigs@yourgroup.com>   # optional, needs a verifie
 
 Without the first two, requests are printed to the server console, which is fine for development. Until you verify a domain in Resend and set `GIG_REQUEST_FROM`, Resend's test sender can only deliver to the email you signed up to Resend with, so set `GIG_REQUEST_TO` to that address. On Vercel, add the same variables under Project → Settings → Environment Variables.
 
+### Gig request spreadsheet
+
+Every request can also be added as a row in a Google Sheet, via a small Apps Script in [`scripts/gig-sheet.gs`](scripts/gig-sheet.gs):
+
+1. Create a Google Sheet (ideally in the group's shared Google account so it survives officer handoffs).
+2. In the Sheet, open **Extensions → Apps Script**, replace everything in `Code.gs` with the contents of `scripts/gig-sheet.gs`, and save.
+3. Click **Deploy → New deployment**, choose type **Web app**, set *Execute as* to **Me** and *Who has access* to **Anyone**, then **Deploy** and approve the permissions prompt.
+4. Copy the Web app URL (ends in `/exec`) and set it as `GIG_SHEET_URL` in `.env.local` and on Vercel, then redeploy.
+
+The header row is added automatically on the first request. Email and the sheet are independent: the visitor only sees an error if every configured destination fails. Keep the `/exec` URL private, since anyone who has it can add rows. If you edit the script later, use **Deploy → Manage deployments → Edit → Version: New version** so the same URL picks up the change.
+
 ## Merch checkout
 
 There's deliberately no custom payment code. Each item's `buyUrl` points to a hosted checkout:

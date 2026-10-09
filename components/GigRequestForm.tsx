@@ -40,7 +40,10 @@ export function GigRequestForm() {
       </label>
       <label>
         Event type
-        <select name="eventType" defaultValue="Wedding">
+        <select name="eventType" defaultValue="" required>
+          <option value="" disabled>
+            Choose one…
+          </option>
           <option>Birthday</option>
           <option>Campus event</option>
           <option>Private party</option>

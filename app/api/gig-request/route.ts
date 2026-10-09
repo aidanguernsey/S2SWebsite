@@ -51,21 +51,41 @@ export async function POST(req: Request) {
     data.details || "(no details)",
   ].join("\n");
 
+  const deliveries = [sendEmail(data, text), logToSheet(data)].filter(
+    (d): d is Promise<boolean> => d !== null
+  );
+
+  if (deliveries.length === 0) {
+    // Development fallback: neither email nor sheet configured yet.
+    console.log("[gig-request]\n" + text);
+    return NextResponse.json({ ok: true });
+  }
+
+  // The request is safe as long as at least one destination got it.
+  const results = await Promise.all(deliveries);
+  if (!results.some(Boolean)) {
+    return NextResponse.json(
+      { error: "We couldn't send your request. Please email us directly." },
+      { status: 502 }
+    );
+  }
+
+  return NextResponse.json({ ok: true });
+}
+
+// Each helper returns null when it isn't configured, otherwise whether it worked.
+
+function sendEmail(data: GigRequest, text: string): Promise<boolean> | null {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.GIG_REQUEST_TO;
+  if (!apiKey || !to) return null;
   // onboarding@resend.dev only delivers to your own Resend account email;
   // set GIG_REQUEST_FROM to an address on a verified domain to send anywhere.
   const from =
     process.env.GIG_REQUEST_FROM || "Gig Requests <onboarding@resend.dev>";
 
-  if (!apiKey || !to) {
-    // Development fallback: no email configured yet.
-    console.log("[gig-request]\n" + text);
-    return NextResponse.json({ ok: true });
-  }
-
   // Resend's REST API — no SDK needed.
-  const res = await fetch("https://api.resend.com/emails", {
+  return fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
@@ -78,15 +98,38 @@ export async function POST(req: Request) {
       subject: `Gig request: ${data.eventType || "Event"} — ${data.name}`,
       text,
     }),
-  });
+  })
+    .then(async (res) => {
+      if (res.ok) return true;
+      console.error("[gig-request] email failed", res.status, await res.text());
+      return false;
+    })
+    .catch((err) => {
+      console.error("[gig-request] email failed", err);
+      return false;
+    });
+}
 
-  if (!res.ok) {
-    console.error("[gig-request] email failed", res.status, await res.text());
-    return NextResponse.json(
-      { error: "We couldn't send your request. Please email us directly." },
-      { status: 502 }
-    );
-  }
+// Google Apps Script web app from scripts/gig-sheet.gs.
+function logToSheet(data: GigRequest): Promise<boolean> | null {
+  const url = process.env.GIG_SHEET_URL;
+  if (!url) return null;
 
-  return NextResponse.json({ ok: true });
+  return fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+    // Apps Script answers 200 with an HTML page when the script throws,
+    // so only trust the { ok: true } the script returns on success.
+    .then(async (res) => {
+      const body = await res.text();
+      if (res.ok && body.includes('"ok":true')) return true;
+      console.error("[gig-request] sheet failed", res.status, body.slice(0, 500));
+      return false;
+    })
+    .catch((err) => {
+      console.error("[gig-request] sheet failed", err);
+      return false;
+    });
 }
