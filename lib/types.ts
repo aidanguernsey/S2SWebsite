@@ -38,6 +38,7 @@ export type Release = {
   spotifyUrl?: string;
   arranger?: string;
   soloists?: string[];
+  featured?: boolean; // pin to the top of the homepage, ahead of newer releases
 };
 
 export type MerchItem = {

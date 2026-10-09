@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { site } from "@/content/site";
 import { upcomingEvents } from "@/content/events";
-import { sortedReleases } from "@/content/releases";
+import { homepageReleases } from "@/content/releases";
 import { currentMembers, execBoard } from "@/content/members";
 import { merch } from "@/content/merch";
 import { EventBanner } from "@/components/EventBanner";
@@ -14,7 +14,7 @@ export const revalidate = 3600;
 
 export default function Home() {
   const next = upcomingEvents()[0];
-  const releases = sortedReleases().slice(0, 3);
+  const releases = homepageReleases().slice(0, 3);
   const latest = releases[0];
   // Exec board first, then everyone else, five cards total.
   const featured = [
