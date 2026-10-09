@@ -63,9 +63,10 @@ To turn on email, copy `.env.example` to `.env.local` and fill in:
 ```
 RESEND_API_KEY=...
 GIG_REQUEST_TO=business-manager@example.edu
+GIG_REQUEST_FROM=Gig Requests <gigs@yourgroup.com>   # optional, needs a verified domain
 ```
 
-Without these, requests are printed to the server console, which is fine for development. On Vercel, add the same two variables under Project → Settings → Environment Variables.
+Without the first two, requests are printed to the server console, which is fine for development. Until you verify a domain in Resend and set `GIG_REQUEST_FROM`, Resend's test sender can only deliver to the email you signed up to Resend with, so set `GIG_REQUEST_TO` to that address. On Vercel, add the same variables under Project → Settings → Environment Variables.
 
 ## Merch checkout
 

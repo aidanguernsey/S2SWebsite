@@ -53,6 +53,10 @@ export async function POST(req: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.GIG_REQUEST_TO;
+  // onboarding@resend.dev only delivers to your own Resend account email;
+  // set GIG_REQUEST_FROM to an address on a verified domain to send anywhere.
+  const from =
+    process.env.GIG_REQUEST_FROM || "Gig Requests <onboarding@resend.dev>";
 
   if (!apiKey || !to) {
     // Development fallback: no email configured yet.
@@ -68,7 +72,7 @@ export async function POST(req: Request) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "Gig Requests <onboarding@resend.dev>", // swap for your verified domain
+      from,
       to: [to],
       reply_to: data.email,
       subject: `Gig request: ${data.eventType || "Event"} — ${data.name}`,
