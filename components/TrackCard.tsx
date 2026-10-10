@@ -1,5 +1,6 @@
 import type { Track } from "@/lib/types";
 import { spotifyEmbedUrl } from "@/lib/spotify";
+import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 
 // `eyebrow` is the small label above the title, e.g. which release the track is on.
 export function TrackCard({ track, eyebrow }: { track: Track; eyebrow?: string }) {
@@ -12,14 +13,7 @@ export function TrackCard({ track, eyebrow }: { track: Track; eyebrow?: string }
   return (
     <article className="card">
       {track.youtubeId ? (
-        <iframe
-          className="embed"
-          src={`https://www.youtube-nocookie.com/embed/${track.youtubeId}`}
-          title={track.title}
-          loading="lazy"
-          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+        <YouTubeEmbed id={track.youtubeId} title={track.title} />
       ) : spotifyEmbed ? (
         <iframe
           className="embed"
