@@ -51,6 +51,7 @@ export type Release = {
   title: string;
   kind: ReleaseKind;
   releaseDate: string; // "2026-04-12"
+  cover?: string; // cover art URL
   spotifyUrl?: string; // the whole album / EP / single
   featured?: boolean; // pin to the top of the homepage, ahead of newer releases
   tracks: Track[]; // in track-list order

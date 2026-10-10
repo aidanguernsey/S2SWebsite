@@ -17,6 +17,7 @@ export const release = defineType({
       validation: (r) => r.required(),
     }),
     defineField({ name: "releaseDate", title: "Release date", type: "date", validation: (r) => r.required() }),
+    defineField({ name: "cover", title: "Cover art", description: "Square image, like the one on Spotify.", type: "image" }),
     defineField({
       name: "spotifyUrl",
       title: "Spotify link",
@@ -69,9 +70,10 @@ export const release = defineType({
   ],
   orderings: [{ title: "Release date, newest", name: "releaseDateDesc", by: [{ field: "releaseDate", direction: "desc" }] }],
   preview: {
-    select: { title: "title", kind: "kind", releaseDate: "releaseDate", featured: "featured", tracks: "tracks" },
-    prepare: ({ title, kind, releaseDate, featured, tracks }) => ({
+    select: { title: "title", kind: "kind", releaseDate: "releaseDate", featured: "featured", tracks: "tracks", media: "cover" },
+    prepare: ({ title, kind, releaseDate, featured, tracks, media }) => ({
       title: featured ? `📌 ${title}` : title,
+      media,
       subtitle: [kind, releaseDate, tracks?.length && `${tracks.length} track${tracks.length === 1 ? "" : "s"}`]
         .filter(Boolean)
         .join(" · "),

@@ -41,7 +41,7 @@ const EVENTS_QUERY = defineQuery(`*[_type == "event" && defined(date)]{
 }`);
 
 const RELEASES_QUERY = defineQuery(`*[_type == "release"]{
-  title, kind, releaseDate, spotifyUrl, featured,
+  title, kind, releaseDate, spotifyUrl, featured, ${photoUrl("cover", 240)},
   "tracks": coalesce(tracks[]{ title, "youtubeId": youtube, spotifyUrl, arranger, soloists }, [])
 }`);
 

@@ -117,7 +117,11 @@ h1, h2, h3 {
 .release-head h3 { font-size: clamp(26px, 3.5vw, 34px); margin-top: 6px; }
 /* Fixed-width columns, so a single's one track doesn't stretch across the page. */
 .release .grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-.spotify-artist { display: block; width: 100%; height: 352px; border: 0; border-radius: var(--radius); }
+.release-title { display: flex; align-items: center; gap: 20px; }
+.release-cover {
+  width: clamp(72px, 14vw, 112px); aspect-ratio: 1; flex-shrink: 0;
+  object-fit: cover; border-radius: 8px; box-shadow: 0 2px 10px rgb(0 0 0 / 0.15);
+}
 .pill {
   display: inline-block; background: var(--ink); color: var(--paper);
   font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
