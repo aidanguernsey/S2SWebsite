@@ -4,7 +4,6 @@ import {
   execBoard,
   getEvents,
   getMembers,
-  getMerch,
   getReleases,
   getSite,
   homepageReleases,
@@ -20,12 +19,11 @@ import { BookSection } from "@/components/BookSection";
 export const revalidate = 3600;
 
 export default async function Home() {
-  const [site, events, allReleases, members, merch] = await Promise.all([
+  const [site, events, allReleases, members] = await Promise.all([
     getSite(),
     getEvents(),
     getReleases(),
     getMembers(),
-    getMerch(),
   ]);
   const next = upcomingEvents(events)[0];
   const latest = homepageReleases(allReleases)[0];
@@ -141,27 +139,6 @@ export default async function Home() {
               <MemberCard key={m.slug} member={m} />
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="section container">
-        <div className="section-head">
-          <h2>Merch</h2>
-          <Link href="/shop" className="more">Visit the shop →</Link>
-        </div>
-        <div className="grid">
-          {merch.slice(0, 3).map((p) => (
-            <div key={p.name} className="product">
-              <div className="placeholder ratio-1">[Product photo]</div>
-              <div className="product-row">
-                <div>
-                  <strong>{p.name}</strong>
-                  <div className="meta">{p.price}</div>
-                </div>
-                <Link href="/shop" className="btn btn-dark">View</Link>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 

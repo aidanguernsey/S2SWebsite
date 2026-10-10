@@ -1,41 +1,22 @@
 import type { Metadata } from "next";
-import { getMerch } from "@/lib/content";
+import Link from "next/link";
 
 export const metadata: Metadata = { title: "Shop" };
 
-export default async function ShopPage() {
-  const merch = await getMerch();
+// Placeholder until the Shopify store is set up. The previous product grid
+// (driven by getMerch()) is in git history.
+export default function ShopPage() {
   return (
     <div className="container">
       <div className="page-title">
         <h1>Merch</h1>
-        <p className="lede">Every purchase supports recordings, travel and competitions.</p>
-      </div>
-      <div className="grid" style={{ marginTop: 40 }}>
-        {merch.map((p) => (
-          <article key={p.name} className="product">
-            {p.image ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={p.image} alt={p.name} className="ratio-1" style={{ objectFit: "cover", borderRadius: 12 }} />
-            ) : (
-              <div className="placeholder ratio-1">[Product photo]</div>
-            )}
-            <div className="product-row">
-              <div>
-                <h2 style={{ fontFamily: "var(--body)", fontSize: 18, letterSpacing: 0 }}>{p.name}</h2>
-                <div className="meta">
-                  {p.price}
-                  {p.sizes && ` · ${p.sizes.join(" / ")}`}
-                </div>
-              </div>
-              {p.buyUrl ? (
-                <a href={p.buyUrl} className="btn btn-dark">Buy</a>
-              ) : (
-                <span className="meta">Coming soon</span>
-              )}
-            </div>
-          </article>
-        ))}
+        <p className="lede">-COMING SOON-</p>
+        <p style={{ marginTop: 16 }}>
+          Our merch store is on the way. Every purchase will support recordings, travel and competitions.
+        </p>
+        <div style={{ marginTop: 32 }}>
+          <Link href="/" className="btn btn-dark">Back to home</Link>
+        </div>
       </div>
     </div>
   );
