@@ -13,7 +13,7 @@ export async function BookSection({ headingLevel = "h2" }: { headingLevel?: "h1"
             Book us for your event
           </Heading>
           <p style={{ fontSize: 18 }}>
-            Weddings, campus events, holiday parties, singing valentines. Tell us
+            Birthdays, campus events, other events you might be hosting! Tell us
             about it and our business manager will get back to you.
           </p>
           {details.length > 0 && (
