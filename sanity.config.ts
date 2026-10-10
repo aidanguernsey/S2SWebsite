@@ -55,6 +55,7 @@ export default defineConfig({
               ),
             S.documentTypeListItem("event").title("Events"),
             S.documentTypeListItem("release").title("Music & videos"),
+            S.documentTypeListItem("video").title("Not yet on streaming"),
             S.documentTypeListItem("merchItem").title("Merch"),
           ]),
     }),

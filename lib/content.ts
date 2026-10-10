@@ -3,7 +3,7 @@
 import { defineQuery } from "next-sanity";
 import { client } from "@/sanity/client";
 import { schoolTimeToIso } from "@/lib/time";
-import type { Event, Member, MerchItem, Release, Site } from "@/lib/types";
+import type { Event, Member, MerchItem, Release, Site, Video } from "@/lib/types";
 import { site as localSite } from "@/content/site";
 import { members as localMembers } from "@/content/members";
 import { events as localEvents } from "@/content/events";
@@ -45,6 +45,10 @@ const RELEASES_QUERY = defineQuery(`*[_type == "release"]{
   "tracks": coalesce(tracks[]{ title, "youtubeId": youtube, spotifyUrl, arranger, soloists }, [])
 }`);
 
+const VIDEOS_QUERY = defineQuery(`*[_type == "video" && defined(youtube)] | order(date desc){
+  title, "youtubeId": youtube, date, arranger, soloists
+}`);
+
 const MERCH_QUERY = defineQuery(`*[_type == "merchItem"] | order(_createdAt asc){
   name, price, ${photoUrl("image", 800)}, buyUrl, sizes
 }`);
@@ -77,6 +81,12 @@ export async function getReleases(): Promise<Release[]> {
   return releases
     .map((r) => ({ ...r, tracks: r.tracks.map((t) => ({ ...t, youtubeId: youtubeId(t.youtubeId) })) }))
     .sort((a, b) => b.releaseDate.localeCompare(a.releaseDate));
+}
+
+export async function getVideos(): Promise<Video[]> {
+  if (!client) return [];
+  const videos = await fetchSanity<Video[]>(VIDEOS_QUERY);
+  return videos.map((v) => ({ ...v, youtubeId: youtubeId(v.youtubeId)! }));
 }
 
 export async function getMerch(): Promise<MerchItem[]> {

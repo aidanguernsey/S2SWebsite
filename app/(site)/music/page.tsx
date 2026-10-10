@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { getReleases, getSite } from "@/lib/content";
+import { getReleases, getSite, getVideos } from "@/lib/content";
 import { TrackCard } from "@/components/TrackCard";
 import { spotifyEmbedUrl } from "@/lib/spotify";
 
 export const metadata: Metadata = { title: "Music" };
 
 export default async function MusicPage() {
-  const [site, releases] = await Promise.all([getSite(), getReleases()]);
+  const [site, releases, videos] = await Promise.all([getSite(), getReleases(), getVideos()]);
   const artistEmbed = spotifyEmbedUrl(site.socials.spotify);
 
   return (
@@ -54,6 +54,21 @@ export default async function MusicPage() {
             </div>
           </article>
         ))}
+        {videos.length > 0 && (
+          <article className="release">
+            <div className="release-head">
+              <div>
+                <div className="eyebrow">Videos · {videos.length} songs</div>
+                <h3>Not Yet On Streaming</h3>
+              </div>
+            </div>
+            <div className="grid">
+              {videos.map((v) => (
+                <TrackCard key={v.youtubeId} track={v} eyebrow={v.date.slice(0, 4)} />
+              ))}
+            </div>
+          </article>
+        )}
       </section>
     </div>
   );

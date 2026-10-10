@@ -56,6 +56,12 @@ export type Release = {
   tracks: Track[]; // in track-list order
 };
 
+// A video of a song that isn't on any release yet.
+export type Video = Track & {
+  youtubeId: string;
+  date: string; // when it was posted, "2025-11-21"
+};
+
 export type MerchItem = {
   name: string;
   price: string;
