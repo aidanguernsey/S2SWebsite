@@ -13,7 +13,7 @@ export const releases: Release[] = [
         title: "End of Beginning",
         youtubeId: "6gaG0arkF6E",
         spotifyUrl: "https://open.spotify.com/track/52TNYme0KedEyoh3ufn7Cx",
-        arranger: "Ben Cappella",
+        arranger: "Ben Capella",
         soloists: ["Tom Terrell"],
       },
     ],
