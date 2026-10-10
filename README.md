@@ -1,6 +1,6 @@
 # S2S website
 
-The official site for [Group Name], [University]'s a cappella group: music and videos, upcoming concerts, merch, gig booking, group history, and a profile page for every current member and alum.
+The official site for Soul2Soul, Miami University's premier tenor-bass a cappella group: music and videos, upcoming concerts, merch, gig booking, group history, and a profile page for every current member and alum.
 
 Built with **Next.js (App Router) + TypeScript**. Content (members, events, releases, merch, group info) is edited in **[Sanity](https://www.sanity.io) Studio** at `/studio` on the site itself, so exec can update the site from a browser without touching code.
 
