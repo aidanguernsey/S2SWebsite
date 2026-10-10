@@ -24,8 +24,8 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
       <header className="site-header">
         <nav className="nav container" aria-label="Main">
           <Link href="/" className="brand">
-            <span className="badge" aria-hidden="true">{site.shortName}</span>
-            <span className="brand-name">{site.name}</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/logo.png" alt={site.name} width={122} height={56} />
           </Link>
           <div className="nav-links">
             {navLinks.map((l) => (
@@ -56,6 +56,10 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
             ))}
             <a href={`mailto:${site.contactEmail}`}>Contact</a>
           </nav>
+        </div>
+        <div className="footer-mark">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/logo-rooster.png" alt="" width={64} height={91} />
         </div>
       </footer>
     </>

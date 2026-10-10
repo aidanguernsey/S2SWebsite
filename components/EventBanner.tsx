@@ -28,7 +28,7 @@ export function EventBanner({ event }: { event: Event }) {
       <div className="when">
         <DateBox iso={event.date} />
         <div>
-          <div className="eyebrow" style={{ color: "var(--ink)" }}>Next concert</div>
+          <div className="eyebrow" style={{ color: "inherit" }}>Next concert</div>
           <h3>{event.title}</h3>
           <div>
             {event.venue} · {formatDate(event.date)}
