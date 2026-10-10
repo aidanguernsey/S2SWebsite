@@ -73,8 +73,13 @@ const docs = [
   ...events.map((e) =>
     compact({ _id: `event-${e.slug}`, _type: "event", ...e, slug: slug(e.slug), date: schoolTimeToIso(e.date) })
   ),
-  ...releases.map(({ youtubeId, ...r }) =>
-    compact({ _id: `release-${toId(`${r.title}-${r.releaseDate}`)}`, _type: "release", ...r, youtube: youtubeId })
+  ...releases.map((r) =>
+    compact({
+      _id: `release-${toId(`${r.title}-${r.releaseDate}`)}`,
+      _type: "release",
+      ...r,
+      tracks: keyed(r.tracks.map(({ youtubeId, ...t }) => compact({ _type: "track", ...t, youtube: youtubeId }))),
+    })
   ),
   ...(await Promise.all(
     merch.map(async (p) => compact({ _id: `merch-${toId(p.name)}`, _type: "merchItem", ...p, image: await image(p.image) }))

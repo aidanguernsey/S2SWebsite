@@ -34,15 +34,26 @@ export type Event = {
   price?: string;
 };
 
-export type Release = {
+// In the order they're grouped on the Music page.
+export const releaseKinds = ["Album", "EP", "Single"] as const;
+
+export type ReleaseKind = (typeof releaseKinds)[number];
+
+export type Track = {
   title: string;
-  kind: "Music video" | "Single" | "Album" | "Live";
-  releaseDate: string; // "2026-04-12"
   youtubeId?: string; // the part after watch?v=
-  spotifyUrl?: string;
+  spotifyUrl?: string; // the track itself; shown as a player when there's no video
   arranger?: string;
   soloists?: string[];
+};
+
+export type Release = {
+  title: string;
+  kind: ReleaseKind;
+  releaseDate: string; // "2026-04-12"
+  spotifyUrl?: string; // the whole album / EP / single
   featured?: boolean; // pin to the top of the homepage, ahead of newer releases
+  tracks: Track[]; // in track-list order
 };
 
 export type MerchItem = {

@@ -8,10 +8,11 @@ import {
   getReleases,
   getSite,
   homepageReleases,
+  homepageTracks,
   upcomingEvents,
 } from "@/lib/content";
 import { EventBanner } from "@/components/EventBanner";
-import { ReleaseCard } from "@/components/ReleaseCard";
+import { TrackCard } from "@/components/TrackCard";
 import { MemberCard } from "@/components/MemberCard";
 import { BookSection } from "@/components/BookSection";
 
@@ -27,8 +28,8 @@ export default async function Home() {
     getMerch(),
   ]);
   const next = upcomingEvents(events)[0];
-  const releases = homepageReleases(allReleases).slice(0, 3);
-  const latest = releases[0];
+  const latest = homepageReleases(allReleases)[0];
+  const tracks = homepageTracks(allReleases).slice(0, 3);
   const current = currentMembers(members);
   // Exec board first, then everyone else, five cards total.
   const featured = [
@@ -114,8 +115,12 @@ export default async function Home() {
           <Link href="/music" className="more">See every release →</Link>
         </div>
         <div className="grid">
-          {releases.map((r) => (
-            <ReleaseCard key={r.title + r.releaseDate} release={r} />
+          {tracks.map(({ track, release }) => (
+            <TrackCard
+              key={release.title + release.releaseDate + track.title}
+              track={track}
+              eyebrow={release.kind === "Single" ? "Single" : `${release.title} · ${release.kind}`}
+            />
           ))}
         </div>
       </section>

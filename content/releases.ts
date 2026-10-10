@@ -5,22 +5,26 @@ import type { Release } from "@/lib/types";
 export const releases: Release[] = [
   {
     title: "End of Beginning",
-    kind: "Music video",
-    releaseDate: "2026-10-02",
-    youtubeId: "6gaG0arkF6E",
-    arranger: "Ben Cappella",
-    soloists: ["Tom Terrell"],
-  },
-  {
-    title: "Stay - Live",
     kind: "Single",
-    releaseDate: "2026-04-01",
-    spotifyUrl: "https://open.spotify.com/track/505qpvbKIXLUE2E5uvInJj?si=ce181df7206a46f3",
+    releaseDate: "2026-10-02",
+    spotifyUrl: "https://open.spotify.com/album/5mbO1W2CRfVd1ojCuRwAhK",
+    tracks: [
+      {
+        title: "End of Beginning",
+        youtubeId: "6gaG0arkF6E",
+        spotifyUrl: "https://open.spotify.com/track/52TNYme0KedEyoh3ufn7Cx",
+        arranger: "Ben Cappella",
+        soloists: ["Tom Terrell"],
+      },
+    ],
   },
   {
-    title: "[Song Title]",
-    kind: "Live",
-    releaseDate: "2025-12-06",
-    youtubeId: "",
+    title: "After the Ride",
+    kind: "EP",
+    releaseDate: "2026-08-28",
+    spotifyUrl: "https://open.spotify.com/album/1PddP3VY6aDAsx302OtnvT",
+    tracks: [
+      { title: "Stay - Live", spotifyUrl: "https://open.spotify.com/track/505qpvbKIXLUE2E5uvInJj" },
+    ],
   },
 ];

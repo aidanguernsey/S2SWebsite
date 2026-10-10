@@ -1,22 +1,21 @@
-import type { Release } from "@/lib/types";
+import type { Track } from "@/lib/types";
 import { spotifyEmbedUrl } from "@/lib/spotify";
 
-export function ReleaseCard({ release }: { release: Release }) {
-  const spotifyEmbed = !release.youtubeId && spotifyEmbedUrl(release.spotifyUrl);
-  const credits = [
-    release.soloists?.length && `Solo: ${release.soloists.join(", ")}`,
-    release.arranger && `Arr. ${release.arranger}`,
-  ]
+// `eyebrow` is the small label above the title, e.g. which release the track is on.
+export function TrackCard({ track, eyebrow }: { track: Track; eyebrow?: string }) {
+  const spotifyEmbed = !track.youtubeId && spotifyEmbedUrl(track.spotifyUrl);
+  const soloists = track.soloists?.filter(Boolean);
+  const credits = [soloists?.length && `Solo: ${soloists.join(", ")}`, track.arranger && `Arr. ${track.arranger}`]
     .filter(Boolean)
     .join(" · ");
 
   return (
     <article className="card">
-      {release.youtubeId ? (
+      {track.youtubeId ? (
         <iframe
           className="embed"
-          src={`https://www.youtube-nocookie.com/embed/${release.youtubeId}`}
-          title={release.title}
+          src={`https://www.youtube-nocookie.com/embed/${track.youtubeId}`}
+          title={track.title}
           loading="lazy"
           allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -25,7 +24,7 @@ export function ReleaseCard({ release }: { release: Release }) {
         <iframe
           className="embed"
           src={spotifyEmbed}
-          title={release.title}
+          title={track.title}
           loading="lazy"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         />
@@ -35,11 +34,11 @@ export function ReleaseCard({ release }: { release: Release }) {
         </div>
       )}
       <div>
-        <div className="eyebrow">{release.kind}</div>
-        <h3>{release.title}</h3>
+        {eyebrow && <div className="eyebrow">{eyebrow}</div>}
+        <h3>{track.title}</h3>
         {credits && <div className="meta">{credits}</div>}
-        {release.spotifyUrl && !spotifyEmbed && (
-          <a className="more" href={release.spotifyUrl}>
+        {track.spotifyUrl && !spotifyEmbed && (
+          <a className="more" href={track.spotifyUrl}>
             Listen on Spotify →
           </a>
         )}

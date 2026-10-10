@@ -20,7 +20,7 @@ app/
   (site)/                Public pages (one folder per URL; "(site)" isn't part of the URL)
     layout.tsx           Header + footer
     page.tsx             Home
-    music/               /music — all releases
+    music/               /music — albums, EPs, and singles, each with its tracks
     events/              /events — upcoming + past shows
     members/             /members — current members by voice part
       exec/              /members/exec — exec board
@@ -51,7 +51,8 @@ Everything is edited at **`/studio`** (e.g. `https://yoursite.com/studio`). Sign
 | Someone graduates | Open them, set **Status** to Alumni and clear **Exec role**. They move to the alumni page. |
 | New exec board | Update **Exec role** on each person. President, Music Director, and Business Manager are listed first; edit `execRoleOrder` in `lib/content.ts` to change that. |
 | New concert | **Events → +**. Times are in Eastern time. It moves to "Past shows" automatically after the date. |
-| New video or song | **Music & videos → +**. Paste the YouTube link and/or the Spotify share link. With no YouTube link, the card shows a Spotify player. Turn on **Pin to homepage** to feature an older release. |
+| New album, EP, or single | **Music & videos → +**. Pick the **Type**, paste the Spotify link to the whole release, then add each song under **Tracks** in track-list order. Give each track its YouTube link and/or Spotify track link: with no YouTube link, it shows a Spotify player. The Music page groups releases into Albums, EPs, and Singles, and the homepage shows the newest tracks. Turn on **Pin to homepage** to feature an older release. |
+| New video for an existing song | Open the release, open the track under **Tracks**, and paste its YouTube link. |
 | New merch | **Merch → +** with a **Buy link**. |
 | Group info, socials, booking, history | **Site settings**. |
 

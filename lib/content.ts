@@ -41,7 +41,8 @@ const EVENTS_QUERY = defineQuery(`*[_type == "event" && defined(date)]{
 }`);
 
 const RELEASES_QUERY = defineQuery(`*[_type == "release"]{
-  title, kind, releaseDate, "youtubeId": youtube, spotifyUrl, arranger, soloists, featured
+  title, kind, releaseDate, spotifyUrl, featured,
+  "tracks": coalesce(tracks[]{ title, "youtubeId": youtube, spotifyUrl, arranger, soloists }, [])
 }`);
 
 const MERCH_QUERY = defineQuery(`*[_type == "merchItem"] | order(_createdAt asc){
@@ -74,7 +75,7 @@ export async function getEvents(): Promise<Event[]> {
 export async function getReleases(): Promise<Release[]> {
   const releases = client ? await fetchSanity<Release[]>(RELEASES_QUERY) : localReleases;
   return releases
-    .map((r) => ({ ...r, youtubeId: youtubeId(r.youtubeId) }))
+    .map((r) => ({ ...r, tracks: r.tracks.map((t) => ({ ...t, youtubeId: youtubeId(t.youtubeId) })) }))
     .sort((a, b) => b.releaseDate.localeCompare(a.releaseDate));
 }
 
@@ -121,3 +122,7 @@ export const pastEvents = (events: Event[], now = new Date()) =>
 // Homepage order: pinned releases first, then newest.
 export const homepageReleases = (releases: Release[]) =>
   [...releases].sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
+
+// Every track with the release it's on, in homepage order.
+export const homepageTracks = (releases: Release[]) =>
+  homepageReleases(releases).flatMap((release) => release.tracks.map((track) => ({ track, release })));
