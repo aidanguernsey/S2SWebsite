@@ -68,7 +68,19 @@ export default async function Home() {
             </div>
             {latest && (
               <p style={{ fontSize: 16, marginTop: 16 }}>
-                New: <strong style={{ color: "var(--paper)" }}>{latest.title}</strong>{" "}
+                New:{" "}
+                {latest.spotifyUrl ? (
+                  <a
+                    href={latest.spotifyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "var(--paper)", fontWeight: 700 }}
+                  >
+                    {latest.title}
+                  </a>
+                ) : (
+                  <strong style={{ color: "var(--paper)" }}>{latest.title}</strong>
+                )}{" "}
                 — out now
               </p>
             )}
