@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { getSite } from "@/lib/content";
 import { SiteChrome } from "@/components/SiteChrome";
 import "../globals.css";
@@ -12,5 +13,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
-  return <SiteChrome>{children}</SiteChrome>;
+  // Analytics lives here rather than the root layout so /studio visits aren't counted.
+  return (
+    <>
+      <SiteChrome>{children}</SiteChrome>
+      <Analytics />
+    </>
+  );
 }
