@@ -5,6 +5,7 @@ type GigRequest = {
   email: string;
   eventType?: string;
   date?: string;
+  time?: string;
   location?: string;
   details?: string;
   website?: string; // honeypot
@@ -13,6 +14,14 @@ type GigRequest = {
 const isEmail = (s: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 const clean = (v: unknown, max = 2000) =>
   typeof v === "string" ? v.trim().slice(0, max) : "";
+
+// <input type="time"> sends 24-hour "19:30"; show it as "7:30 PM".
+const formatTime = (s: string) => {
+  const m = /^(\d\d):(\d\d)/.exec(s);
+  if (!m) return "";
+  const h = Number(m[1]);
+  return `${h % 12 || 12}:${m[2]} ${h < 12 ? "AM" : "PM"}`;
+};
 
 export async function POST(req: Request) {
   let raw: Record<string, unknown>;
@@ -27,6 +36,7 @@ export async function POST(req: Request) {
     email: clean(raw.email, 200),
     eventType: clean(raw.eventType, 100),
     date: clean(raw.date, 20),
+    time: formatTime(clean(raw.time, 20)),
     location: clean(raw.location, 300),
     details: clean(raw.details),
     website: clean(raw.website, 200),
@@ -46,6 +56,7 @@ export async function POST(req: Request) {
     `New gig request from ${data.name} <${data.email}>`,
     `Event type: ${data.eventType || "—"}`,
     `Date: ${data.date || "—"}`,
+    `Time: ${data.time || "—"}`,
     `Location: ${data.location || "—"}`,
     "",
     data.details || "(no details)",

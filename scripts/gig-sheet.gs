@@ -16,6 +16,7 @@ const HEADERS = [
   "Email",
   "Event type",
   "Event date",
+  "Event time",
   "Location",
   "Details",
 ];
@@ -38,6 +39,7 @@ function doPost(e) {
       data.email,
       data.eventType,
       data.date,
+      data.time,
       data.location,
       data.details,
     ].map(safe),

@@ -39,6 +39,14 @@ export function GigRequestForm() {
         <input name="email" type="email" required autoComplete="email" />
       </label>
       <label>
+        Event date
+        <input name="date" type="date" />
+      </label>
+      <label>
+        Event time
+        <input name="time" type="time" />
+      </label>
+      <label>
         Event type
         <select name="eventType" defaultValue="" required>
           <option value="" disabled>
@@ -51,10 +59,6 @@ export function GigRequestForm() {
         </select>
       </label>
       <label>
-        Event date
-        <input name="date" type="date" />
-      </label>
-      <label className="full">
         Location
         <input name="location" />
       </label>
