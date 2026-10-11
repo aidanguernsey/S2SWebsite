@@ -129,6 +129,13 @@ export const upcomingEvents = (events: Event[], now = new Date()) =>
 export const pastEvents = (events: Event[], now = new Date()) =>
   events.filter((e) => new Date(e.date) < now).sort(byDate).reverse();
 
+// Anchor id for a release's block on the Music page, e.g. /music#after-the-ride.
+export const releaseAnchor = (release: Release) =>
+  release.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "release";
+
+// Anchor id for the unreleased videos block on the Music page.
+export const UNRELEASED_ANCHOR = "not-yet-released";
+
 // Soloists are typed as plain names, so match them to members loosely.
 const nameKey = (name: string) => name.trim().replace(/\s+/g, " ").toLowerCase();
 

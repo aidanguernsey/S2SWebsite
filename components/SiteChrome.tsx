@@ -1,17 +1,15 @@
 import Link from "next/link";
-import { getSite } from "@/lib/content";
+import { getReleases, getSite, getVideos, releaseAnchor, UNRELEASED_ANCHOR } from "@/lib/content";
 
-const navLinks = [
-  { href: "/music", label: "Music" },
-  { href: "/events", label: "Events" },
-  { href: "/members", label: "Members" },
-  { href: "/about", label: "About" },
-  { href: "/shop", label: "Shop" },
+const memberLinks = [
+  { href: "/members", label: "Current members", sub: "This year’s group" },
+  { href: "/members/exec", label: "Exec board", sub: "Who runs the group" },
+  { href: "/alumni", label: "Alumni", sub: "Past members" },
 ];
 
 // Header and footer around every public page (not the Studio).
 export async function SiteChrome({ children }: { children: React.ReactNode }) {
-  const site = await getSite();
+  const [site, releases, videos] = await Promise.all([getSite(), getReleases(), getVideos()]);
   const socials = [
     { href: site.socials.instagram, label: "Instagram" },
     { href: site.socials.youtube, label: "YouTube" },
@@ -28,11 +26,72 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
             <img src="/brand/logo.png" alt={site.name} width={122} height={56} />
           </Link>
           <div className="nav-links">
-            {navLinks.map((l) => (
-              <Link key={l.href} href={l.href}>
-                {l.label}
-              </Link>
-            ))}
+            {/* Dropdowns open on hover or keyboard focus (CSS only); on touch screens the top links just navigate. */}
+            <div className="nav-item">
+              <Link href="/music">Music</Link>
+              <div className="nav-menu">
+                <div className="nav-menu-panel nav-menu-music">
+                  <div className="nav-menu-heading">Latest releases</div>
+                  {releases.slice(0, 4).map((r) => (
+                    <Link key={r.title + r.releaseDate} href={`/music#${releaseAnchor(r)}`}>
+                      {r.cover ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img className="nav-menu-cover" src={r.cover} alt="" loading="lazy" />
+                      ) : (
+                        <span className="nav-menu-cover" aria-hidden="true">
+                          {r.title.slice(0, 1)}
+                        </span>
+                      )}
+                      <span>
+                        <span className="nav-menu-label">{r.title}</span>
+                        <span className="nav-menu-sub">
+                          {r.kind} · {r.releaseDate.slice(0, 4)}
+                        </span>
+                      </span>
+                    </Link>
+                  ))}
+                  {videos.length > 0 && (
+                    <>
+                      <hr />
+                      <Link href={`/music#${UNRELEASED_ANCHOR}`}>
+                        <span className="nav-menu-cover nav-menu-cover-video" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M8 5v14l11-7z" fill="currentColor" />
+                          </svg>
+                        </span>
+                        <span>
+                          <span className="nav-menu-label">Not yet released</span>
+                          <span className="nav-menu-sub">Songs only on YouTube so far</span>
+                        </span>
+                      </Link>
+                    </>
+                  )}
+                  <hr />
+                  <Link href="/music" className="nav-menu-all">
+                    <span className="nav-menu-label">See all music</span>
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <Link href="/events">Events</Link>
+            <div className="nav-item">
+              <Link href="/members">Members</Link>
+              <div className="nav-menu">
+                <div className="nav-menu-panel nav-menu-members">
+                  {memberLinks.map((l) => (
+                    <Link key={l.href} href={l.href}>
+                      <span>
+                        <span className="nav-menu-label">{l.label}</span>
+                        <span className="nav-menu-sub">{l.sub}</span>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <Link href="/about">About</Link>
+            <Link href="/shop">Shop</Link>
             <Link href="/book" className="btn btn-accent">
               Book us
             </Link>

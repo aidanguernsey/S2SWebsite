@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
-import { getMembers, getReleases, getSite, getVideos, soloistLinks } from "@/lib/content";
+import {
+  getMembers,
+  getReleases,
+  getSite,
+  getVideos,
+  releaseAnchor,
+  soloistLinks,
+  UNRELEASED_ANCHOR,
+} from "@/lib/content";
 import { TrackCard } from "@/components/TrackCard";
 
 export const metadata: Metadata = { title: "Music" };
@@ -27,7 +35,7 @@ export default async function MusicPage() {
       </div>
       <section className="section">
         {releases.map((r) => (
-          <article key={r.title + r.releaseDate} className="release">
+          <article key={r.title + r.releaseDate} id={releaseAnchor(r)} className="release">
             <div className="release-head">
               <div className="release-title">
                 {r.cover && <img className="release-cover" src={r.cover} alt={`${r.title} cover art`} loading="lazy" />}
@@ -58,7 +66,7 @@ export default async function MusicPage() {
           </article>
         ))}
         {videos.length > 0 && (
-          <article className="release">
+          <article id={UNRELEASED_ANCHOR} className="release">
             <div className="release-head">
               <div>
                 <div className="eyebrow">Videos · {videos.length} songs</div>

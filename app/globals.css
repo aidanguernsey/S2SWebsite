@@ -72,6 +72,53 @@ h1, h2, h3 {
 .nav-links a { text-decoration: none; padding: 10px 0; }
 .nav-links .btn { padding: 12px 22px; }
 
+/* Header dropdowns (Music, Members). Hover-capable screens only; touch taps just follow the top link. */
+.nav-item { position: relative; }
+.nav-menu {
+  position: absolute; top: 100%; left: -14px; z-index: 20; padding-top: 6px;
+  visibility: hidden; opacity: 0; transform: translateY(-4px);
+  transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+}
+.nav-item:has(:focus-visible) .nav-menu { visibility: visible; opacity: 1; transform: none; }
+@media (hover: hover) {
+  .nav-item > a { display: inline-flex; align-items: center; gap: 8px; }
+  .nav-item > a::after {
+    content: ""; width: 7px; height: 7px;
+    border-right: 1.75px solid currentColor; border-bottom: 1.75px solid currentColor;
+    transform: translateY(-2px) rotate(45deg); opacity: 0.7; transition: transform 0.15s;
+  }
+  .nav-item:hover > a::after { transform: translateY(1px) rotate(-135deg); }
+  .nav-item:hover .nav-menu { visibility: visible; opacity: 1; transform: none; }
+}
+.nav-menu-panel {
+  background: #1c1c20; color: var(--paper); border: 1px solid #2e2e33; border-radius: 14px;
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.35); padding: 8px; display: grid; gap: 2px;
+}
+.nav-menu-members { width: 230px; }
+.nav-menu-music { width: 320px; }
+.nav-links .nav-menu a {
+  display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px;
+}
+.nav-links .nav-menu a:hover, .nav-links .nav-menu a:focus-visible { background: #26262b; }
+.nav-links .nav-menu a:focus-visible { outline: 2px solid var(--accent-on-dark); outline-offset: -2px; }
+.nav-menu-label { display: block; font-weight: 700; }
+.nav-menu-sub { display: block; font-size: 13px; color: var(--muted-on-dark); }
+.nav-menu-heading {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent-on-dark); padding: 8px 12px 4px;
+}
+.nav-menu hr { border: 0; border-top: 1px solid #2e2e33; margin: 6px 4px; }
+.nav-menu-cover {
+  flex: none; width: 40px; height: 40px; border-radius: 6px; object-fit: cover;
+  background: #2a2a2e; color: #9c978e; display: grid; place-items: center;
+  font-family: var(--display); font-weight: 700;
+}
+.nav-menu-cover-video { background: var(--accent); color: var(--paper); }
+.nav-links .nav-menu a.nav-menu-all { justify-content: space-between; color: var(--accent-on-dark); }
+@media (prefers-reduced-motion: reduce) {
+  .nav-menu, .nav-item > a::after { transition: none; }
+}
+
 /* Hero */
 .hero {
   display: flex; flex-wrap: wrap; gap: 56px; align-items: center;
@@ -109,6 +156,7 @@ h1, h2, h3 {
 .yt-facade:hover svg, .yt-facade:focus-visible svg { opacity: 1; }
 /* Music page: one block per album / EP / single */
 .release + .release { margin-top: 56px; }
+.release { scroll-margin-top: 24px; } /* breathing room when jumped to from the Music menu */
 .release-head {
   display: flex; flex-wrap: wrap; justify-content: space-between;
   align-items: flex-end; gap: 8px 16px; margin-bottom: 20px;
