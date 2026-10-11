@@ -1,14 +1,40 @@
+import { Fragment } from "react";
+import Link from "next/link";
 import type { Track } from "@/lib/types";
+import { soloistSlug, type SoloistLinks } from "@/lib/content";
 import { spotifyEmbedUrl } from "@/lib/spotify";
 import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 
 // `eyebrow` is the small label above the title, e.g. which release the track is on.
-export function TrackCard({ track, eyebrow }: { track: Track; eyebrow?: string }) {
+// Soloists found in `soloistLinks` link to their member profile.
+export function TrackCard({
+  track,
+  eyebrow,
+  soloistLinks = {},
+}: {
+  track: Track;
+  eyebrow?: string;
+  soloistLinks?: SoloistLinks;
+}) {
   const spotifyEmbed = !track.youtubeId && spotifyEmbedUrl(track.spotifyUrl);
-  const soloists = track.soloists?.filter(Boolean);
-  const credits = [soloists?.length && `Solo: ${soloists.join(", ")}`, track.arranger && `Arr. ${track.arranger}`]
-    .filter(Boolean)
-    .join(" · ");
+  const soloists = track.soloists?.filter(Boolean) ?? [];
+  const credits = [
+    soloists.length > 0 && (
+      <Fragment key="solo">
+        Solo:{" "}
+        {soloists.map((name, i) => {
+          const slug = soloistSlug(soloistLinks, name);
+          return (
+            <Fragment key={name}>
+              {i > 0 && ", "}
+              {slug ? <Link href={`/members/${slug}`}>{name}</Link> : name}
+            </Fragment>
+          );
+        })}
+      </Fragment>
+    ),
+    track.arranger && <Fragment key="arr">Arr. {track.arranger}</Fragment>,
+  ].filter(Boolean);
 
   return (
     <article className="card">
@@ -30,7 +56,16 @@ export function TrackCard({ track, eyebrow }: { track: Track; eyebrow?: string }
       <div>
         {eyebrow && <div className="eyebrow">{eyebrow}</div>}
         <h3>{track.title}</h3>
-        {credits && <div className="meta">{credits}</div>}
+        {credits.length > 0 && (
+          <div className="meta">
+            {credits.map((c, i) => (
+              <Fragment key={i}>
+                {i > 0 && " · "}
+                {c}
+              </Fragment>
+            ))}
+          </div>
+        )}
         {track.spotifyUrl && !spotifyEmbed && (
           <a className="more" href={track.spotifyUrl}>
             Listen on Spotify →

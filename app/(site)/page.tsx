@@ -8,6 +8,7 @@ import {
   getSite,
   homepageReleases,
   homepageTracks,
+  soloistLinks,
   upcomingEvents,
 } from "@/lib/content";
 import { EventBanner } from "@/components/EventBanner";
@@ -118,6 +119,7 @@ export default async function Home() {
               key={release.title + release.releaseDate + track.title}
               track={track}
               eyebrow={release.kind === "Single" ? "Single" : `${release.title} · ${release.kind}`}
+              soloistLinks={soloistLinks(members)}
             />
           ))}
         </div>

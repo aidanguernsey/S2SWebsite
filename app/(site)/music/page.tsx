@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { getReleases, getSite, getVideos } from "@/lib/content";
+import { getMembers, getReleases, getSite, getVideos, soloistLinks } from "@/lib/content";
 import { TrackCard } from "@/components/TrackCard";
 
 export const metadata: Metadata = { title: "Music" };
 
 export default async function MusicPage() {
-  const [site, releases, videos] = await Promise.all([getSite(), getReleases(), getVideos()]);
+  const [site, releases, videos, members] = await Promise.all([getSite(), getReleases(), getVideos(), getMembers()]);
+  const links = soloistLinks(members);
 
   return (
     <div className="container">
@@ -51,7 +52,7 @@ export default async function MusicPage() {
             </div>
             <div className="grid">
               {r.tracks.map((t, i) => (
-                <TrackCard key={i} track={t} />
+                <TrackCard key={i} track={t} soloistLinks={links} />
               ))}
             </div>
           </article>
@@ -66,7 +67,7 @@ export default async function MusicPage() {
             </div>
             <div className="grid">
               {videos.map((v) => (
-                <TrackCard key={v.youtubeId} track={v} eyebrow={v.date.slice(0, 4)} />
+                <TrackCard key={v.youtubeId} track={v} eyebrow={v.date.slice(0, 4)} soloistLinks={links} />
               ))}
             </div>
           </article>

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getMember, getMembers } from "@/lib/content";
+import { getMember, getMembers, getReleases, getVideos, memberSoloTracks, soloistLinks } from "@/lib/content";
 import { MemberPhoto } from "@/components/MemberCard";
+import { TrackCard } from "@/components/TrackCard";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -18,8 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function MemberProfile({ params }: Props) {
-  const member = await getMember((await params).slug);
+  const [{ slug }, members, releases, videos] = await Promise.all([params, getMembers(), getReleases(), getVideos()]);
+  const member = members.find((m) => m.slug === slug);
   if (!member) notFound();
+
+  // Recorded solos get a player below; any others are just listed by name.
+  const soloTracks = memberSoloTracks(member, releases, videos);
+  const recorded = new Set(soloTracks.map(({ track }) => track.title.trim().toLowerCase()));
+  const otherSolos = member.solos?.filter((s) => !recorded.has(s.trim().toLowerCase())) ?? [];
 
   const facts = [
     { label: "Voice part", value: member.voicePart },
@@ -56,12 +63,12 @@ export default async function MemberProfile({ params }: Props) {
             ))}
           </ul>
           <p className="bio">{member.bio}</p>
-          {member.solos?.length ? (
+          {otherSolos.length > 0 && (
             <>
-              <h2 style={{ fontSize: 24, margin: "32px 0 8px" }}>Solos</h2>
-              <ul>{member.solos.map((s) => <li key={s}>{s}</li>)}</ul>
+              <h2 style={{ fontSize: 24, margin: "32px 0 8px" }}>{soloTracks.length ? "More solos" : "Solos"}</h2>
+              <ul>{otherSolos.map((s) => <li key={s}>{s}</li>)}</ul>
             </>
-          ) : null}
+          )}
           {member.funFact && (
             <>
               <h2 style={{ fontSize: 24, margin: "32px 0 8px" }}>Fun fact</h2>
@@ -70,6 +77,18 @@ export default async function MemberProfile({ params }: Props) {
           )}
         </div>
       </article>
+      {soloTracks.length > 0 && (
+        <section className="release" style={{ paddingBottom: 96 }}>
+          <div className="section-head">
+            <h2>Solos</h2>
+          </div>
+          <div className="grid">
+            {soloTracks.map(({ track, eyebrow }, i) => (
+              <TrackCard key={i} track={track} eyebrow={eyebrow} soloistLinks={soloistLinks(members)} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

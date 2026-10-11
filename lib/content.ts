@@ -3,7 +3,7 @@
 import { defineQuery } from "next-sanity";
 import { client } from "@/sanity/client";
 import { schoolTimeToIso } from "@/lib/time";
-import type { Event, Member, MerchItem, Release, Site, Video } from "@/lib/types";
+import type { Event, Member, MerchItem, Release, Site, Track, Video } from "@/lib/types";
 import { site as localSite } from "@/content/site";
 import { members as localMembers } from "@/content/members";
 import { events as localEvents } from "@/content/events";
@@ -128,6 +128,32 @@ export const upcomingEvents = (events: Event[], now = new Date()) =>
 
 export const pastEvents = (events: Event[], now = new Date()) =>
   events.filter((e) => new Date(e.date) < now).sort(byDate).reverse();
+
+// Soloists are typed as plain names, so match them to members loosely.
+const nameKey = (name: string) => name.trim().replace(/\s+/g, " ").toLowerCase();
+
+// Soloist name → profile slug, for linking credits to member pages.
+export type SoloistLinks = Record<string, string>;
+
+export const soloistLinks = (members: Member[]): SoloistLinks =>
+  Object.fromEntries(members.map((m) => [nameKey(m.name), m.slug]));
+
+export const soloistSlug = (links: SoloistLinks, name: string) => links[nameKey(name)];
+
+// Every recorded track (releases, then unreleased videos) this member solos on.
+export const memberSoloTracks = (member: Member, releases: Release[], videos: Video[]) => {
+  const solosOn = (t: { soloists?: string[] }) =>
+    !!t.soloists?.some((s) => s && nameKey(s) === nameKey(member.name));
+  return [
+    ...releases.flatMap((release) =>
+      release.tracks.filter(solosOn).map((track) => ({
+        track,
+        eyebrow: release.kind === "Single" ? `Single · ${release.releaseDate.slice(0, 4)}` : `${release.title} · ${release.kind}`,
+      }))
+    ),
+    ...videos.filter(solosOn).map((video) => ({ track: video as Track, eyebrow: `Video · ${video.date.slice(0, 4)}` })),
+  ];
+};
 
 // Homepage order: pinned releases first, then newest.
 export const homepageReleases = (releases: Release[]) =>
