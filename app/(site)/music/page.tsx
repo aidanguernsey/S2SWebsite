@@ -70,8 +70,11 @@ export default async function MusicPage() {
                 </div>
               </div>
               {r.spotifyUrl && (
-                <a className="more" href={r.spotifyUrl} target="_blank" rel="noopener noreferrer">
-                  Listen to the {r.kind === "EP" ? "EP" : r.kind.toLowerCase()} on Spotify →
+                <a className="more release-listen" href={r.spotifyUrl} target="_blank" rel="noopener noreferrer">
+                  <span className="label-long">
+                    Listen to the {r.kind === "EP" ? "EP" : r.kind.toLowerCase()} on Spotify →
+                  </span>
+                  <span className="label-short">Listen</span>
                 </a>
               )}
             </div>
