@@ -90,5 +90,30 @@
     "funFact": "I have arranged for four Miami A Cappella groups! (Soul2Soul, MU Trebz, Misfitz and Just Duet)!",
     "favoriteArrangement": "Before It's Too Late, Misnomer, Evergreen (can't choose one!)",
     "favoriteMemory": "Performing for the Miami Arts Series at the Columbus Art Museum!"
+  },
+  {
+    "slug": "kyle-baesman",
+    "name": "Kyle Baesman",
+    "status": "alumni",
+    "classYear": 2024,
+    "pastExecRoles": [
+      "Business Director",
+      "Treasurer"
+    ],
+    "major": "Marketing",
+    "minor": "Digital Marketing, Human Capital Management",
+    "job": "Real Estate",
+    "hometown": "Delaware OH",
+    "solos": [
+      "Hallucinogenics",
+      "Muse Medley",
+      "Please Come Home For Christmas",
+      "It Must’ve Been Ole Santa Claus",
+      "Disney Medley",
+      "Bill Withers Medley"
+    ],
+    "funFact": "Foos Ball Prodigy",
+    "favoriteArrangement": "Muse Medley",
+    "favoriteMemory": "Foos Ball"
   }
 ]
