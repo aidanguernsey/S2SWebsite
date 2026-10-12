@@ -44,7 +44,7 @@ public/                  Static images
 
 ## Editing content
 
-Everything is edited at **`/studio`** (e.g. `https://yoursite.com/studio`). Sign in, open a document, edit, and click **Publish**. Changes show up on the site within seconds if the webhook below is set up, or within a minute without it.
+Everything is edited at **`/studio`** (e.g. `https://s2swebsite.vercel.app/studio`). Sign in, open a document, edit, and click **Publish**. Changes show up on the site within seconds if the webhook below is set up, or within a minute without it.
 
 | Task | What to do in the Studio |
 | --- | --- |
@@ -66,10 +66,10 @@ Please get each person's OK on their bio and photo before publishing, and let al
 
 1. Create a free project at [sanity.io/manage](https://www.sanity.io/manage), ideally under the group's shared account so it survives officer handoffs. Use the default `production` dataset, and keep it public: the site reads it without a key, and it only holds what the site already shows.
 2. Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SANITY_PROJECT_ID` to the project ID.
-3. In the project's **API → CORS origins**, add `http://localhost:3000` and your live URL (e.g. `https://yoursite.com`), both with **Allow credentials** checked. The Studio can't sign in without this.
+3. In the project's **API → CORS origins**, add `http://localhost:3000` and your live URL (e.g. `https://s2swebsite.vercel.app/`), both with **Allow credentials** checked. The Studio can't sign in without this.
 4. Copy the current content over: in **API → Tokens**, create a token with **Editor** permissions, put it in `.env.local` as `SANITY_API_WRITE_TOKEN`, and run `npm run seed` (Node 22.18 or newer). This uploads the photos from `public/` as well. Afterwards you can delete the token. Use `npm run seed -- --dry-run` to preview first.
 5. On Vercel, add `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, and `SANITY_REVALIDATE_SECRET` (any long random string) under Project → Settings → Environment Variables, then redeploy.
-6. For instant updates, go to **API → Webhooks → Create webhook**: URL `https://yoursite.com/api/revalidate`, dataset `production`, trigger on Create/Update/Delete, HTTP method POST, and **Secret** set to the same value as `SANITY_REVALIDATE_SECRET`.
+6. For instant updates, go to **API → Webhooks → Create webhook**: URL `https://s2swebsite.vercel.app/api/revalidate`, dataset `production`, trigger on Create/Update/Delete, HTTP method POST, and **Secret** set to the same value as `SANITY_REVALIDATE_SECRET`.
 7. Invite exec under **Members → Invite** with the Editor role. When officers change, remove the old ones there.
 
 Once Sanity is live, `content/` is not read by the site; editing it has no effect.
