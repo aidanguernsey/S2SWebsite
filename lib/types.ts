@@ -16,12 +16,15 @@ export type Member = {
   status: "current" | "alumni";
   classYear: number;
   major?: string;
+  minor?: string;
   hometown?: string;
   execRole?: string; // e.g. "President" — leave out if not on exec
   photo?: string; // image URL (Sanity CDN, or a path under /public)
   bio: string;
   solos?: string[];
   funFact?: string;
+  favoriteArrangement?: string; // links to the Music page when it matches a track
+  favoriteMemory?: string;
 };
 
 export type Event = {

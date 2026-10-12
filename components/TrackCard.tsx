@@ -8,10 +8,12 @@ import { YouTubeEmbed } from "@/components/YouTubeEmbed";
 // `eyebrow` is the small label above the title, e.g. which release the track is on.
 // Soloists found in `soloistLinks` link to their member profile.
 export function TrackCard({
+  id,
   track,
   eyebrow,
   soloistLinks = {},
 }: {
+  id?: string;
   track: Track;
   eyebrow?: string;
   soloistLinks?: SoloistLinks;
@@ -37,7 +39,7 @@ export function TrackCard({
   ].filter(Boolean);
 
   return (
-    <article className="card">
+    <article id={id} className="card">
       {track.youtubeId ? (
         <YouTubeEmbed id={track.youtubeId} title={track.title} />
       ) : spotifyEmbed ? (

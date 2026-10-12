@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "shrink-photos": "node scripts/shrink-photos.mjs",
-    "seed": "node --env-file-if-exists=.env.local scripts/seed-sanity.mjs"
+    "seed": "node --env-file-if-exists=.env.local scripts/seed-sanity.mjs",
+    "import-members": "node --env-file-if-exists=.env.local scripts/import-members.mjs"
   },
   "dependencies": {
     "@sanity/client": "^8.9.0",

@@ -211,6 +211,9 @@ h1, h2, h3 {
 .profile { display: flex; flex-wrap: wrap; gap: 48px; padding: 56px 0 96px; }
 .profile .photo { flex: 1 1 320px; max-width: 420px; }
 .profile .details { flex: 2 1 420px; min-width: 0; }
+/* Solo names jump to their player below but read as plain text. */
+.solo-list a { text-decoration: none; }
+.card[id] { scroll-margin-top: 24px; }
 .profile h1 { font-size: clamp(40px, 6vw, 72px); font-weight: 800; margin: 12px 0 8px; }
 .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin: 28px 0; padding: 0; list-style: none; }
 .facts li { background: #fff; border-radius: 12px; padding: 14px 16px; }

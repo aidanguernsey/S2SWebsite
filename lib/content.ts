@@ -32,8 +32,8 @@ const SITE_QUERY = defineQuery(`*[_id == "siteSettings"][0]{
 }`);
 
 const MEMBERS_QUERY = defineQuery(`*[_type == "member" && defined(slug.current)] | order(name asc){
-  "slug": slug.current, name, voicePart, status, classYear, major, hometown,
-  execRole, ${photoUrl("photo", 800)}, bio, solos, funFact
+  "slug": slug.current, name, voicePart, status, classYear, major, minor, hometown,
+  execRole, ${photoUrl("photo", 800)}, bio, solos, funFact, favoriteArrangement, favoriteMemory
 }`);
 
 const EVENTS_QUERY = defineQuery(`*[_type == "event" && defined(date)]{
@@ -160,6 +160,24 @@ export const memberSoloTracks = (member: Member, releases: Release[], videos: Vi
     ),
     ...videos.filter(solosOn).map((video) => ({ track: video as Track, eyebrow: `Video · ${video.date.slice(0, 4)}` })),
   ];
+};
+
+// Song titles are typed loosely too: "Francesca" should match the "Francesca - Live"
+// track, and a form answer like "Eagles Medley (Take It Easy)" the "Eagles Medley" one.
+const songKey = (title: string) =>
+  nameKey(title).replace(/\s*(?:[-–]\s*live|\(live\))$/, "");
+
+export const sameSong = (typed: string, trackTitle: string) => {
+  const key = songKey(typed);
+  const track = songKey(trackTitle);
+  return key === track || key.replace(/\s*\([^()]*\)$/, "") === track;
+};
+
+// Music page link for a song by title, e.g. a member's favorite arrangement.
+export const songHref = (title: string, releases: Release[], videos: Video[]) => {
+  const release = releases.find((r) => r.tracks.some((t) => sameSong(title, t.title)));
+  if (release) return `/music#${releaseAnchor(release)}`;
+  if (videos.some((v) => sameSong(title, v.title))) return `/music#${UNRELEASED_ANCHOR}`;
 };
 
 // Homepage order: pinned releases first, then newest.
