@@ -58,5 +58,37 @@
       "President",
       "Treasurer"
     ]
+  },
+  {
+    "slug": "aaron-chavez",
+    "name": "Aaron Chavez",
+    "status": "alumni",
+    "voicePart": "Tenor I",
+    "classYear": 2024,
+    "pastExecRoles": [
+      "Music Director(2x)",
+      "Assistant Music Director (2x)",
+      "Social Chair",
+      "Alumni Liaison"
+    ],
+    "major": "Liberal Studies - Education, Health and Society",
+    "minor": "Creative Writing",
+    "job": "Academic Advisor - Mercy College of Ohio, Higher Education",
+    "hometown": "Fremont, OH",
+    "bio": "I’ve been singing in choir since the 3rd grade, so you could say vocal performance has been integral to me for quite some time. When I came to Miami in 2020, I knew I wanted to be involved in some type of performance group. When I joined Soul2Soul in Fall 2021, I did not know I would meet my future best friends and brothers for life. Joining this group was life-saving and I would not trade it for the world. By day, I work as an Academic Advisor; also by day (and long nights), I arrange a cappella scores and stack vocals and harmonies until my computer runs out of storage. I love what Soul2Soul represents and am so happy to have long-lasting friendships and connections with my brothers in song.",
+    "solos": [
+      "Save Your Tears (The Weeknd)",
+      "Lovely Day (Bill Withers Medley)",
+      "Dock of the Bay (Otis Redding)",
+      "Fix You (Naturally 7 cover)",
+      "Thought Contagion (Evolution of Muse)",
+      "O Come All Ye Faithful (Samuel Ljungblahd)",
+      "Petrified (Omar Apollo)",
+      "Endlessly (Omar Apollo)",
+      "One Of These Nights / Heartache Tonight (Eagles Medley)"
+    ],
+    "funFact": "I have arranged for four Miami A Cappella groups! (Soul2Soul, MU Trebz, Misfitz and Just Duet)!",
+    "favoriteArrangement": "Before It's Too Late, Misnomer, Evergreen (can't choose one!)",
+    "favoriteMemory": "Performing for the Miami Arts Series at the Columbus Art Museum!"
   }
 ]
