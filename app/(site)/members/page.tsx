@@ -3,6 +3,7 @@ import { currentMembers, getMembers } from "@/lib/content";
 import { voiceParts } from "@/lib/types";
 import { MemberCard } from "@/components/MemberCard";
 import { MemberTabs } from "@/components/MemberTabs";
+import { ViewToggle } from "@/components/ViewToggle";
 
 export const metadata: Metadata = { title: "Members" };
 
@@ -12,7 +13,10 @@ export default async function MembersPage() {
     <div className="container">
       <div className="page-title section-head">
         <div>
-          <h1>Meet the voices</h1>
+          <div className="title-row">
+            <h1>Meet the voices</h1>
+            <ViewToggle section="members" />
+          </div>
           <p className="lede">{members.length} singers, grouped by voice part.</p>
         </div>
         <MemberTabs active="/members" />
@@ -23,7 +27,7 @@ export default async function MembersPage() {
         return (
           <section key={part} className="part-group">
             <h2 style={{ fontSize: 28, marginBottom: 20 }}>{part}</h2>
-            <div className="grid-tight">
+            <div className="grid-tight member-grid">
               {group.map((m) => (
                 <MemberCard key={m.slug} member={m} />
               ))}

@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { getReleases, getSite, getVideos, releaseAnchor, UNRELEASED_ANCHOR } from "@/lib/content";
+import { AutoHideHeader } from "./AutoHideHeader";
+import { MobileNav } from "./MobileNav";
+import { restoreViewsScript } from "./ViewToggle";
 
 const memberLinks = [
   { href: "/members", label: "Current members", sub: "This year’s group" },
@@ -15,11 +18,13 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
     { href: site.socials.youtube, label: "YouTube" },
     { href: site.socials.spotify, label: "Spotify" },
     { href: site.socials.tiktok, label: "TikTok" },
-  ].filter((s) => s.href);
+  ].filter((s): s is { href: string; label: string } => !!s.href);
 
   return (
     <>
-      <header className="site-header">
+      {/* Restores each visitor's icons/list choice before first paint (phones only). */}
+      <script dangerouslySetInnerHTML={{ __html: restoreViewsScript }} />
+      <AutoHideHeader>
         <nav className="nav container" aria-label="Main">
           <Link href="/" className="brand">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -97,7 +102,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
             </Link>
           </div>
         </nav>
-      </header>
+      </AutoHideHeader>
 
       <main>{children}</main>
 
@@ -113,7 +118,6 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
             {socials.map((s) => (
               <a key={s.label} href={s.href}>{s.label}</a>
             ))}
-            <a href={`mailto:${site.contactEmail}`}>Contact</a>
           </nav>
         </div>
         <div className="footer-mark">
@@ -121,6 +125,8 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
           <img src="/brand/logo-rooster.png" alt="" width={64} height={91} />
         </div>
       </footer>
+
+      <MobileNav socials={socials} contactEmail={site.contactEmail} />
     </>
   );
 }

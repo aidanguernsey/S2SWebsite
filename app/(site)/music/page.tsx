@@ -9,6 +9,12 @@ import {
   UNRELEASED_ANCHOR,
 } from "@/lib/content";
 import { TrackCard } from "@/components/TrackCard";
+import { TrackList, creditLine } from "@/components/TrackList";
+import { ViewToggle } from "@/components/ViewToggle";
+import type { Track } from "@/lib/types";
+
+// List-view rows open the song on YouTube (or Spotify) directly.
+const listHref = (t: Track) => (t.youtubeId ? `https://www.youtube.com/watch?v=${t.youtubeId}` : t.spotifyUrl);
 
 export const metadata: Metadata = { title: "Music" };
 
@@ -19,7 +25,10 @@ export default async function MusicPage() {
   return (
     <div className="container">
       <div className="page-title">
-        <h1>Music &amp; videos</h1>
+        <div className="title-row">
+          <h1>Music &amp; videos</h1>
+          <ViewToggle section="music" />
+        </div>
         <p className="lede">Every release, newest first.</p>
         {site.socials.spotify && (
           <a
@@ -32,6 +41,14 @@ export default async function MusicPage() {
             Follow {site.name} on Spotify →
           </a>
         )}
+        <nav className="jump-chips" aria-label="Jump to release">
+          {releases.map((r) => (
+            <a key={r.title + r.releaseDate} href={`#${releaseAnchor(r)}`}>
+              {r.title}
+            </a>
+          ))}
+          {videos.length > 0 && <a href={`#${UNRELEASED_ANCHOR}`}>Not yet released</a>}
+        </nav>
       </div>
       <section className="section">
         {releases.map((r) => (
@@ -58,10 +75,21 @@ export default async function MusicPage() {
                 </a>
               )}
             </div>
-            <div className="grid">
+            <div className="grid view-icons">
               {r.tracks.map((t, i) => (
                 <TrackCard key={i} track={t} soloistLinks={links} />
               ))}
+            </div>
+            <div className="view-list">
+              <TrackList
+                rows={r.tracks.map((t, i) => ({
+                  key: String(i),
+                  track: t,
+                  meta: creditLine(t),
+                  href: listHref(t),
+                  image: r.cover,
+                }))}
+              />
             </div>
           </article>
         ))}
@@ -73,10 +101,20 @@ export default async function MusicPage() {
                 <h3>Not Yet On Streaming</h3>
               </div>
             </div>
-            <div className="grid">
+            <div className="grid view-icons">
               {videos.map((v) => (
                 <TrackCard key={v.youtubeId} track={v} eyebrow={v.date.slice(0, 4)} soloistLinks={links} />
               ))}
+            </div>
+            <div className="view-list">
+              <TrackList
+                rows={videos.map((v) => ({
+                  key: v.youtubeId,
+                  track: v,
+                  meta: [v.date.slice(0, 4), creditLine(v)].filter(Boolean).join(" · "),
+                  href: listHref(v),
+                }))}
+              />
             </div>
           </article>
         )}

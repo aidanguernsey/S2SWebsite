@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { alumni, getMembers } from "@/lib/content";
 import { MemberCard } from "@/components/MemberCard";
 import { MemberTabs } from "@/components/MemberTabs";
+import { ViewToggle } from "@/components/ViewToggle";
 
 export const metadata: Metadata = { title: "Alumni" };
 
@@ -12,7 +13,10 @@ export default async function AlumniPage() {
     <div className="container">
       <div className="page-title section-head">
         <div>
-          <h1>Alumni</h1>
+          <div className="title-row">
+            <h1>Alumni</h1>
+            <ViewToggle section="members" />
+          </div>
           <p className="lede">Once a member, always a member.</p>
         </div>
         <MemberTabs active="/alumni" />
@@ -20,7 +24,7 @@ export default async function AlumniPage() {
       {years.map((year) => (
         <section key={year} className="part-group">
           <h2 style={{ fontSize: 28, marginBottom: 20 }}>Class of {year}</h2>
-          <div className="grid-tight">
+          <div className="grid-tight member-grid">
             {all
               .filter((m) => m.classYear === year)
               .map((m) => (

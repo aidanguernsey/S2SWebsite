@@ -8,6 +8,7 @@ import {
   getSite,
   homepageReleases,
   homepageTracks,
+  releaseAnchor,
   soloistLinks,
   upcomingEvents,
 } from "@/lib/content";
@@ -15,6 +16,7 @@ import { EventBanner } from "@/components/EventBanner";
 import { TrackCard } from "@/components/TrackCard";
 import { MemberCard } from "@/components/MemberCard";
 import { BookSection } from "@/components/BookSection";
+import { TrackList, creditLine } from "@/components/TrackList";
 
 // Re-check every hour so "next concert" stays current without a redeploy.
 export const revalidate = 3600;
@@ -55,7 +57,7 @@ export default async function Home() {
               </Link>
             </div>
           </div>
-          <div>
+          <div className="hero-media">
             <div className="photo-wrap" style={{ aspectRatio: "4 / 3" }}>
               {site.groupPhoto ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -67,7 +69,7 @@ export default async function Home() {
               )}
             </div>
             {latest && (
-              <p style={{ fontSize: 16, marginTop: 16 }}>
+              <p className="hero-new">
                 New:{" "}
                 {latest.spotifyUrl ? (
                   <a
@@ -89,7 +91,7 @@ export default async function Home() {
       </div>
 
       {next && (
-        <section className="container" style={{ paddingTop: 72 }}>
+        <section className="container next-event">
           <EventBanner event={next} />
         </section>
       )}
@@ -113,7 +115,7 @@ export default async function Home() {
           <h2>Music &amp; videos</h2>
           <Link href="/music" className="more">See every release →</Link>
         </div>
-        <div className="grid">
+        <div className="grid desktop-only">
           {tracks.map(({ track, release }) => (
             <TrackCard
               key={release.title + release.releaseDate + track.title}
@@ -123,6 +125,17 @@ export default async function Home() {
             />
           ))}
         </div>
+        <TrackList
+          rows={tracks.map(({ track, release }) => ({
+            key: release.title + release.releaseDate + track.title,
+            track,
+            meta: [release.kind === "Single" ? "Single" : `${release.title} · ${release.kind}`, creditLine(track)]
+              .filter(Boolean)
+              .join(" · "),
+            href: `/music#${releaseAnchor(release)}`,
+            image: release.cover,
+          }))}
+        />
       </section>
 
       <section className="band">
@@ -136,7 +149,7 @@ export default async function Home() {
             </div>
             <Link href="/members" className="more">Meet the whole group →</Link>
           </div>
-          <div className="grid-tight">
+          <div className="grid-tight swipe-row">
             {featured.map((m) => (
               <MemberCard key={m.slug} member={m} />
             ))}
@@ -144,7 +157,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <BookSection />
+      <BookSection compactOnMobile />
     </>
   );
 }
