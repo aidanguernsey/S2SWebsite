@@ -38,5 +38,21 @@
     "funFact": "I attended Camp A Cappella at Wright State University in middle school!",
     "favoriteArrangement": "Misnomer",
     "favoriteMemory": "S2S formal at Lake Norris freshman year!"
+  },
+  {
+    "slug": "wes-payne",
+    "name": "Wes Payne",
+    "status": "alumni",
+    "voicePart": "Tenor II",
+    "classYear": 2024,
+    "major": "Sport Management, Journalism",
+    "hometown": "Lexington, KY",
+    "bio": "Wes joined Soul2Soul in the spring of 2021, his second semester at Miami. His experiences as a student leader, both in Soul2Soul and elsewhere, led him to pursuing and completing his M.A. in Higher Education/Student Affairs from The Ohio State University in May 2026. Wes currently works at Northwestern University as a Program Coordinator for Residential and Academic Engagement, where he supports student leadership development and peer-to-peer programming for the student leaders living on campus. Wes loves cooking, trying new restaurants, sports, music, movies, and video games.",
+    "solos": [
+      "Evolution of Muse - Madness\nMisery\nDrops of Jupiter"
+    ],
+    "funFact": "My favorite recipe to make is chicken parm!",
+    "favoriteArrangement": "Evolution of Muse",
+    "favoriteMemory": "Recording our album during Winter Break in 2022!"
   }
 ]
