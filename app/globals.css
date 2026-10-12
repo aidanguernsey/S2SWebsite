@@ -145,6 +145,9 @@ h1, h2, h3 {
 .card { display: flex; flex-direction: column; gap: 12px; text-decoration: none; }
 .card h3 { font-family: var(--body); font-size: 20px; letter-spacing: 0; }
 .card .meta { font-size: 15px; color: var(--muted); }
+.release-card-cover { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); }
+.release-card .placeholder { font-family: var(--display); font-size: 64px; font-weight: 800; }
+.release-card:hover h3 { text-decoration: underline; }
 .ratio-16-9 { aspect-ratio: 16 / 9; }
 .ratio-4-5 { aspect-ratio: 4 / 5; }
 .ratio-1 { aspect-ratio: 1 / 1; }
@@ -398,13 +401,28 @@ h1, h2, h3 {
   .swipe-row .card h3, .member-grid .card h3 { font-size: 16px; }
   .swipe-row .card .meta, .member-grid .card .meta { font-size: 13px; }
 
+  /* Home "Music & videos": the latest releases as rows. */
+  .release-cards { display: flex; flex-direction: column; gap: 0; }
+  .release-card {
+    flex-direction: row; align-items: center; gap: 14px; padding: 12px 0;
+    border-bottom: 1px solid var(--stone);
+  }
+  .release-card::after {
+    content: ""; flex: none; margin: 0 6px 0 auto; width: 8px; height: 8px;
+    border-right: 2px solid currentColor; border-top: 2px solid currentColor; transform: rotate(45deg);
+  }
+  .release-card-cover { flex: none; width: 72px; border-radius: 8px; }
+  .release-card .placeholder { font-size: 28px; padding: 0; }
+  .release-card .eyebrow { font-size: 12px; }
+  .release-card h3 { font-size: 18px; }
+
   .book-compact { display: block; margin-top: 32px; }
   .book-compact > div { background: var(--ink); color: var(--paper); border-radius: 20px; padding: 22px 18px; }
   .book-compact h2 { font-size: 28px; font-weight: 800; }
   .book-compact p { color: var(--muted-on-dark); margin: 6px 0 16px; }
   .book-compact .btn { display: flex; justify-content: center; }
 
-  /* Song rows (home page, and the Music page's list view). */
+  /* Song rows (the Music page's list view). */
   .track-list { display: block; list-style: none; margin: 0; padding: 0; }
   .track-list a, .track-list li > div {
     display: flex; gap: 12px; align-items: center; padding: 12px 0;
@@ -463,9 +481,12 @@ h1, h2, h3 {
   }
   .release + .release { margin-top: 40px; }
   .release-head { margin-bottom: 12px; }
-  .release .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 12px; }
-  .release .card h3 { font-size: 16px; }
-  .release .card .meta { font-size: 13px; }
+  /* One full-width player per row: two-across was too small to tap reliably. */
+  .release .grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .release .card h3 { font-size: 18px; }
+  .release .card .meta { font-size: 14px; }
+  /* Spotify's compact player is laid out for a 152px height, not a 16:9 box. */
+  .embed-spotify { aspect-ratio: auto; height: 152px; }
   [data-view-music="list"] .release .view-icons { display: none; }
   [data-view-music="list"] .release .view-list { display: block; }
 }

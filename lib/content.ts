@@ -41,7 +41,7 @@ const EVENTS_QUERY = defineQuery(`*[_type == "event" && defined(date)]{
 }`);
 
 const RELEASES_QUERY = defineQuery(`*[_type == "release"]{
-  title, kind, releaseDate, spotifyUrl, featured, ${photoUrl("cover", 240)},
+  title, kind, releaseDate, spotifyUrl, featured, ${photoUrl("cover", 600)},
   "tracks": coalesce(tracks[]{ title, "youtubeId": youtube, spotifyUrl, arranger, soloists }, [])
 }`);
 
@@ -184,6 +184,3 @@ export const songHref = (title: string, releases: Release[], videos: Video[]) =>
 export const homepageReleases = (releases: Release[]) =>
   [...releases].sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
 
-// Every track with the release it's on, in homepage order.
-export const homepageTracks = (releases: Release[]) =>
-  homepageReleases(releases).flatMap((release) => release.tracks.map((track) => ({ track, release })));

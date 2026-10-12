@@ -7,16 +7,12 @@ import {
   getReleases,
   getSite,
   homepageReleases,
-  homepageTracks,
-  releaseAnchor,
-  soloistLinks,
   upcomingEvents,
 } from "@/lib/content";
 import { EventBanner } from "@/components/EventBanner";
-import { TrackCard } from "@/components/TrackCard";
 import { MemberCard } from "@/components/MemberCard";
 import { BookSection } from "@/components/BookSection";
-import { TrackList, creditLine } from "@/components/TrackList";
+import { ReleaseCard } from "@/components/ReleaseCard";
 
 // Re-check every hour so "next concert" stays current without a redeploy.
 export const revalidate = 3600;
@@ -29,8 +25,9 @@ export default async function Home() {
     getMembers(),
   ]);
   const next = upcomingEvents(events)[0];
-  const latest = homepageReleases(allReleases)[0];
-  const tracks = homepageTracks(allReleases).slice(0, 3);
+  // Newest first, with any release pinned in the Studio ("featured") ahead of the rest.
+  const recentReleases = homepageReleases(allReleases).slice(0, 3);
+  const latest = recentReleases[0];
   const current = currentMembers(members);
   // Exec board first, then everyone else, five cards total.
   const featured = [
@@ -115,27 +112,11 @@ export default async function Home() {
           <h2>Music &amp; videos</h2>
           <Link href="/music" className="more">See every release →</Link>
         </div>
-        <div className="grid desktop-only">
-          {tracks.map(({ track, release }) => (
-            <TrackCard
-              key={release.title + release.releaseDate + track.title}
-              track={track}
-              eyebrow={release.kind === "Single" ? "Single" : `${release.title} · ${release.kind}`}
-              soloistLinks={soloistLinks(members)}
-            />
+        <div className="grid release-cards">
+          {recentReleases.map((r) => (
+            <ReleaseCard key={r.title + r.releaseDate} release={r} />
           ))}
         </div>
-        <TrackList
-          rows={tracks.map(({ track, release }) => ({
-            key: release.title + release.releaseDate + track.title,
-            track,
-            meta: [release.kind === "Single" ? "Single" : `${release.title} · ${release.kind}`, creditLine(track)]
-              .filter(Boolean)
-              .join(" · "),
-            href: `/music#${releaseAnchor(release)}`,
-            image: release.cover,
-          }))}
-        />
       </section>
 
       <section className="band">

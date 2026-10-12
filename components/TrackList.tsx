@@ -17,7 +17,7 @@ export const creditLine = (track: Track) => {
     .join(" · ");
 };
 
-// Compact one-row-per-song list, shown on phones only (see "Phone layout" in globals.css).
+// Compact one-row-per-song list for the Music page's list view on phones (see "Phone layout" in globals.css).
 export function TrackList({ rows }: { rows: TrackRow[] }) {
   return (
     <ul className="track-list">

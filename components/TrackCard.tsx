@@ -44,7 +44,7 @@ export function TrackCard({
         <YouTubeEmbed id={track.youtubeId} title={track.title} />
       ) : spotifyEmbed ? (
         <iframe
-          className="embed"
+          className="embed embed-spotify"
           src={spotifyEmbed}
           title={track.title}
           loading="lazy"
