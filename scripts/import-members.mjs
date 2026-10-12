@@ -61,7 +61,10 @@ const column = (start) => header.findIndex((h) => h.trim().toLowerCase().startsW
 const columns = {
   name: column("Name"),
   classYear: column("Graduation Year"),
+  yearJoined: column("Year Joined"),
+  semesters: column("Number of Semesters"),
   status: column("Current Member or Alumni"),
+  performedVP: column("Did you perform as a VP"),
   voicePart: column("Voice Part"),
   execRole: column("Exec Role (current)"),
   pastExecRoles: column("Exec Role(s)"),
@@ -80,8 +83,10 @@ for (const [key, i] of Object.entries(columns)) if (i === -1) console.warn(`No "
 
 const toSlug = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const nameKey = (s) => s.trim().replace(/\s+/g, " ").toLowerCase();
-// "A, B (with, commas), C" → ["A", "B (with, commas)", "C"]
-const splitList = (s) => s.split(/,(?![^(]*\))/).map((x) => x.trim()).filter(Boolean);
+const toNumber = (s) => (/^\d+$/.test(s) ? Number(s) : undefined);
+const toYesNo = (s) => (/^y/i.test(s) ? true : /^n/i.test(s) ? false : undefined);
+// "A, B (with, commas), C" or one per line → ["A", "B (with, commas)", "C"]
+const splitList = (s) => s.split(/\n|,(?![^(]*\))/).map((x) => x.trim()).filter(Boolean);
 
 // ---- Photos ----
 
@@ -122,6 +127,9 @@ for (const row of responses) {
       status,
       voicePart,
       classYear: Number.isNaN(classYear) ? undefined : classYear,
+      yearJoined: toNumber(get("yearJoined")),
+      semesters: toNumber(get("semesters")),
+      performedVP: toYesNo(get("performedVP")),
       execRole,
       pastExecRoles: get("pastExecRoles") ? splitList(get("pastExecRoles")) : undefined,
       major: get("major"),

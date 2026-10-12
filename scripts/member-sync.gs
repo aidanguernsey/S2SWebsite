@@ -22,14 +22,17 @@ const NOTIFY_EMAIL = "aidan.guernsey@gmail.com";
 const RUN_AT_HOUR = 7; // 7–8am in the script's time zone (Project Settings)
 
 // Must match voiceParts in lib/types.ts.
-const VOICE_PARTS = ["Tenor I", "Tenor II", "Baritone", "Bass", "Vocal Percussion"];
+const VOICE_PARTS = ["Tenor I", "Tenor II", "Tenor III", "Baritone", "Bass", "Vocal Percussion"];
 
 // Form questions may get reworded, so columns are found by how they start.
 const COLUMNS = {
   timestamp: "Timestamp",
   name: "Name",
   classYear: "Graduation Year",
+  yearJoined: "Year Joined",
+  semesters: "Number of Semesters",
   status: "Current Member or Alumni",
+  performedVP: "Did you perform as a VP",
   voicePart: "Voice Part",
   execRole: "Exec Role (current)",
   pastExecRoles: "Exec Role(s)",
@@ -100,8 +103,10 @@ function readSheet() {
 const toSlug = (s) =>
   s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const nameKey = (s) => s.trim().replace(/\s+/g, " ").toLowerCase();
-// "A, B (with, commas), C" → ["A", "B (with, commas)", "C"]
-const splitList = (s) => s.split(/,(?![^(]*\))/).map((x) => x.trim()).filter(Boolean);
+const toNumber = (s) => (/^\d+$/.test(s) ? Number(s) : undefined);
+const toYesNo = (s) => (/^y/i.test(s) ? true : /^n/i.test(s) ? false : undefined);
+// "A, B (with, commas), C" or one per line → ["A", "B (with, commas)", "C"]
+const splitList = (s) => s.split(/\n|,(?![^(]*\))/).map((x) => x.trim()).filter(Boolean);
 
 // Same mapping as scripts/import-members.mjs.
 function toFields({ get }, warn) {
@@ -119,6 +124,9 @@ function toFields({ get }, warn) {
       status,
       voicePart,
       classYear: isNaN(classYear) ? undefined : classYear,
+      yearJoined: toNumber(get("yearJoined")),
+      semesters: toNumber(get("semesters")),
+      performedVP: toYesNo(get("performedVP")),
       execRole,
       pastExecRoles: get("pastExecRoles") ? splitList(get("pastExecRoles")) : undefined,
       major: get("major"),

@@ -2,6 +2,7 @@
 export const voiceParts = [
   "Tenor I",
   "Tenor II",
+  "Tenor III",
   "Baritone",
   "Bass",
   "Vocal Percussion",
@@ -15,6 +16,9 @@ export type Member = {
   voicePart: VoicePart;
   status: "current" | "alumni";
   classYear: number;
+  yearJoined?: number;
+  semesters?: number; // semesters in the group, as of when they filled out the form
+  performedVP?: boolean; // also performed vocal percussion
   major?: string;
   minor?: string;
   job?: string; // current job or industry, mostly for alumni

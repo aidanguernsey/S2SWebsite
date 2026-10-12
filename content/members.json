@@ -23,6 +23,9 @@
     "voicePart": "Tenor II",
     "status": "current",
     "classYear": 2028,
+    "yearJoined": 2024,
+    "semesters": 5,
+    "performedVP": true,
     "major": "Computer Science",
     "minor": "Classical Studies",
     "hometown": "Fairfield, CT",
@@ -45,6 +48,9 @@
     "status": "alumni",
     "voicePart": "Tenor II",
     "classYear": 2024,
+    "yearJoined": 2021,
+    "semesters": 7,
+    "performedVP": false,
     "major": "Sport Management, Journalism",
     "hometown": "Lexington, KY",
     "bio": "Wes joined Soul2Soul in the spring of 2021, his second semester at Miami. His experiences as a student leader, both in Soul2Soul and elsewhere, led him to pursuing and completing his M.A. in Higher Education/Student Affairs from The Ohio State University in May 2026. Wes currently works at Northwestern University as a Program Coordinator for Residential and Academic Engagement, where he supports student leadership development and peer-to-peer programming for the student leaders living on campus. Wes loves cooking, trying new restaurants, sports, music, movies, and video games.",
@@ -65,6 +71,9 @@
     "status": "alumni",
     "voicePart": "Tenor I",
     "classYear": 2024,
+    "yearJoined": 2021,
+    "semesters": 7,
+    "performedVP": false,
     "pastExecRoles": [
       "Music Director(2x)",
       "Assistant Music Director (2x)",
@@ -96,6 +105,9 @@
     "name": "Kyle Baesman",
     "status": "alumni",
     "classYear": 2024,
+    "yearJoined": 2019,
+    "semesters": 9,
+    "performedVP": false,
     "pastExecRoles": [
       "Business Director",
       "Treasurer"
@@ -114,6 +126,7 @@
     ],
     "funFact": "Foos Ball Prodigy",
     "favoriteArrangement": "Muse Medley",
-    "favoriteMemory": "Foos Ball"
+    "favoriteMemory": "Foos Ball",
+    "voicePart": "Tenor III"
   }
 ]

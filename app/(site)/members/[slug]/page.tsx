@@ -43,12 +43,17 @@ export default async function MemberProfile({ params }: Props) {
 
   const pastExecRoles = member.pastExecRoles?.filter((r) => r.trim()) ?? [];
   const facts = [
-    { label: "Voice part", value: member.voicePart },
+    {
+      label: "Voice part",
+      value: member.performedVP && member.voicePart !== "Vocal Percussion" ? `${member.voicePart} & vocal percussion` : member.voicePart,
+    },
     { label: member.status === "alumni" ? "Class of" : "Class year", value: member.classYear },
+    member.yearJoined && { label: "Joined", value: member.yearJoined },
+    member.semesters && { label: "Semesters in S2S", value: member.semesters },
     member.execRole && { label: "Exec role", value: member.execRole },
     pastExecRoles.length > 0 && { label: "Past exec roles", value: pastExecRoles.join(", ") },
-    member.major && { label: "Major", value: member.major },
-    member.minor && { label: "Minor", value: member.minor },
+    member.major && { label: member.major.includes(",") ? "Majors" : "Major", value: member.major },
+    member.minor && { label: member.minor.includes(",") ? "Minors" : "Minor", value: member.minor },
     member.job && { label: "Job / industry", value: member.job },
     member.hometown && { label: "Hometown", value: member.hometown },
   ].filter(Boolean) as { label: string; value: string | number }[];
