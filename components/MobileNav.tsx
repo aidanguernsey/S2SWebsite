@@ -92,12 +92,18 @@ const morePages = [
 export function MobileNav({ socials, contactEmail }: { socials: Social[]; contactEmail: string }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  // While true the sheet is still on screen, playing its slide-down; it unmounts when that ends.
+  const [closing, setClosing] = useState(false);
   const moreButton = useRef<HTMLButtonElement>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
   const touchStartY = useRef<number | null>(null);
+  const refocusMore = useRef(true);
 
-  // Close the sheet whenever the page changes.
-  useEffect(() => setOpen(false), [pathname]);
+  // Close the sheet whenever the page changes (no focus jump back to "More").
+  useEffect(() => {
+    if (open) close(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -111,9 +117,17 @@ export function MobileNav({ socials, contactEmail }: { socials: Social[]; contac
     };
   }, [open]);
 
-  function close() {
+  function close(returnFocus = true) {
+    refocusMore.current = returnFocus;
+    // With reduced motion there's no animation (so no animationend): close right away.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) finishClose();
+    else setClosing(true);
+  }
+
+  function finishClose() {
     setOpen(false);
-    moreButton.current?.focus();
+    setClosing(false);
+    if (refocusMore.current) moreButton.current?.focus();
   }
 
   const moreActive = open || morePages.some((p) => pathname.startsWith(p.href));
@@ -122,9 +136,10 @@ export function MobileNav({ socials, contactEmail }: { socials: Social[]; contac
     <>
       {open && (
         <>
-          <div className="more-backdrop" aria-hidden="true" onClick={close} />
+          <div className={closing ? "more-backdrop is-closing" : "more-backdrop"} aria-hidden="true" onClick={() => close()} />
           <div
-            className="more-sheet"
+            className={closing ? "more-sheet is-closing" : "more-sheet"}
+            onAnimationEnd={(e) => e.target === e.currentTarget && closing && finishClose()}
             role="dialog"
             aria-modal="true"
             aria-labelledby="more-sheet-title"
@@ -138,7 +153,7 @@ export function MobileNav({ socials, contactEmail }: { socials: Social[]; contac
             <div className="more-grabber" aria-hidden="true" />
             <div className="more-head">
               <h2 id="more-sheet-title">More</h2>
-              <button ref={closeButton} type="button" className="more-close" onClick={close} aria-label="Close">
+              <button ref={closeButton} type="button" className="more-close" onClick={() => close()} aria-label="Close">
                 <svg {...icon} width={18} height={18}>
                   <path d="M6 6l12 12M18 6L6 18" />
                 </svg>
@@ -196,7 +211,13 @@ export function MobileNav({ socials, contactEmail }: { socials: Social[]; contac
           type="button"
           className={moreActive ? "is-active" : undefined}
           aria-expanded={open}
-          onClick={() => (open ? close() : setOpen(true))}
+          onClick={() => {
+            if (open && !closing) close();
+            else {
+              setClosing(false);
+              setOpen(true);
+            }
+          }}
         >
           <svg {...icon}>
             <circle cx="5" cy="12" r="1.2" />
