@@ -33,7 +33,7 @@ const SITE_QUERY = defineQuery(`*[_id == "siteSettings"][0]{
 
 const MEMBERS_QUERY = defineQuery(`*[_type == "member" && defined(slug.current)] | order(name asc){
   "slug": slug.current, name, voicePart, status, classYear, major, minor, job, hometown,
-  execRole, ${photoUrl("photo", 800)}, bio, solos, funFact, favoriteArrangement, favoriteMemory
+  execRole, pastExecRoles, ${photoUrl("photo", 800)}, bio, solos, funFact, favoriteArrangement, favoriteMemory
 }`);
 
 const EVENTS_QUERY = defineQuery(`*[_type == "event" && defined(date)]{

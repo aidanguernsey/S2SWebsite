@@ -20,6 +20,7 @@ export type Member = {
   job?: string; // current job or industry, mostly for alumni
   hometown?: string;
   execRole?: string; // e.g. "President" — leave out if not on exec
+  pastExecRoles?: string[]; // roles they no longer hold, alumni included
   photo?: string; // image URL (Sanity CDN, or a path under /public)
   bio: string;
   solos?: string[];

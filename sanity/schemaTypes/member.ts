@@ -48,6 +48,13 @@ export const member = defineType({
           )
           .warning(),
     }),
+    defineField({
+      name: "pastExecRoles",
+      title: "Past exec roles",
+      description: 'Roles they used to hold, e.g. "Treasurer". When someone leaves exec or graduates, move their exec role here.',
+      type: "array",
+      of: [{ type: "string" }],
+    }),
     defineField({ name: "major", type: "string" }),
     defineField({ name: "minor", type: "string" }),
     defineField({ name: "job", title: "Current job / industry", type: "string" }),

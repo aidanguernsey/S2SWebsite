@@ -41,10 +41,12 @@ export default async function MemberProfile({ params }: Props) {
   });
   const favoriteHref = member.favoriteArrangement && songHref(member.favoriteArrangement, releases, videos);
 
+  const pastExecRoles = member.pastExecRoles?.filter((r) => r.trim()) ?? [];
   const facts = [
     { label: "Voice part", value: member.voicePart },
     { label: member.status === "alumni" ? "Class of" : "Class year", value: member.classYear },
     member.execRole && { label: "Exec role", value: member.execRole },
+    pastExecRoles.length > 0 && { label: "Past exec roles", value: pastExecRoles.join(", ") },
     member.major && { label: "Major", value: member.major },
     member.minor && { label: "Minor", value: member.minor },
     member.job && { label: "Job / industry", value: member.job },
