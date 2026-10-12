@@ -1,43 +1,8 @@
 import type { Member } from "@/lib/types";
+import data from "./members.json" with { type: "json" };
 
-// Starter data. The live site reads from Sanity (edit at /studio); this file is
-// only copied in by `npm run seed` and shown when Sanity isn't configured.
-// Photos are paths under /public; `npm run seed` uploads them to Sanity.
-export const members: Member[] = [
-  {
-    slug: "sean-spezzano",
-    name: "Sean Spezzano",
-    voicePart: "Tenor I",
-    status: "current",
-    classYear: 2028,
-    major: "Biochemistry",
-    hometown: "Livonia, NY",
-    execRole: "President",
-    photo: "/members/sean-spezzano.jpg",
-    bio: "[A few sentences in Sean's own words: how he found the group, favorite arrangement, what he does outside of singing.]",
-    solos: ["Good Old-Fashioned Lover Boy", "Movin' Out", "Virtual Insanity"],
-    funFact: "Sean is studying abroad in London next Fall!",
-  },
-  {
-    slug: "aidan-guernsey",
-    name: "Aidan Guernsey",
-    voicePart: "Tenor II",
-    status: "current",
-    classYear: 2028,
-    major: "Computer Science",
-    minor: "Classical Studies",
-    hometown: "Fairfield, CT",
-    execRole: "Music Director",
-    bio: "I am a Junior Computer Science major and Classical Studies minor, and am serving my second term as Music Director of Soul2Soul A Cappella! I have been singing since I was in pre-school, and in a cappella groups since middle school! Soul2Soul is a group of my best friends, and has made my time at Miami so much better. I love the a cappella community and am so excited to see what the next year and a half has in store!",
-    solos: [
-      "Eagles Medley (Take It Easy)",
-      "Francesca",
-      "Maine",
-      "Joji Medley (Glimpse of Us)",
-      "Bruno Mars Medley (Just the Way You Are)",
-    ],
-    funFact: "I attended Camp A Cappella at Wright State University in middle school!",
-    favoriteArrangement: "Misnomer",
-    favoriteMemory: "S2S formal at Lake Norris freshman year!",
-  },
-];
+// Starter data and backup. The live site reads from Sanity (edit at /studio); this
+// file is only copied in by `npm run seed` and shown when Sanity isn't configured.
+// The entries live in members.json so scripts/member-sync.gs can add form
+// submissions to it. Photos are paths under /public; `npm run seed` uploads them.
+export const members = data as Member[];

@@ -50,6 +50,7 @@ export const member = defineType({
     }),
     defineField({ name: "major", type: "string" }),
     defineField({ name: "minor", type: "string" }),
+    defineField({ name: "job", title: "Current job / industry", type: "string" }),
     defineField({ name: "hometown", type: "string" }),
     defineField({ name: "photo", description: "Portrait orientation (4:5) looks best.", type: "image" }),
     defineField({ name: "bio", type: "text", rows: 5, validation: (r) => r.required() }),

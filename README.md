@@ -37,7 +37,8 @@ lib/content.ts           Fetches content from Sanity (or content/ as a fallback)
 lib/types.ts             The shape of each content type
 sanity/schemaTypes/      The fields exec sees in the Studio
 sanity.config.ts         Studio setup (sidebar, singleton site settings)
-content/                 Starter data: copied into Sanity by `npm run seed`
+content/                 Starter data and member backup: copied into Sanity by `npm run seed`
+scripts/                 Seeding, member import, and Google Apps Scripts
 public/                  Static images
 ```
 
@@ -72,6 +73,18 @@ Please get each person's OK on their bio and photo before publishing, and let al
 7. Invite exec under **Members → Invite** with the Editor role. When officers change, remove the old ones there.
 
 Once Sanity is live, `content/` is not read by the site; editing it has no effect.
+
+### Member bio form
+
+Members fill in a Google Form (name, voice part, bio, solos, headshot…). Every morning, [`scripts/member-sync.gs`](scripts/member-sync.gs) picks up new or edited responses, creates or updates each person's profile in Sanity, adds them to the backup in `content/members.json` (committed to GitHub, which also redeploys the site), and emails you a list with Studio links and anyone who still needs a photo. Headshots are private Drive uploads, so add those in the Studio by hand.
+
+1. In the form's response Sheet, open **Extensions → Apps Script**, paste in `scripts/member-sync.gs`, and set `SITE_URL` near the top to the live site.
+2. Under **Project Settings → Script Properties**, add:
+   - `SANITY_TOKEN`: a Sanity token with **Editor** permissions (sanity.io/manage → API → Tokens).
+   - `GITHUB_TOKEN`: a [fine-grained GitHub token](https://github.com/settings/personal-access-tokens/new) for just this repository, with **Contents: Read and write**.
+3. Pick `setup` in the function menu, click **Run**, and approve the permissions prompt. It runs daily between 7 and 8am in the script's time zone (**Project Settings**). Run `syncMembers` to import right away.
+
+People already in Sanity (matched by profile URL or name) only get the fields they filled in; everything else edited in the Studio is left alone. Problems, like a voice part that isn't one of the options or an alum who listed an exec role, are listed in the email. For a one-off import from a CSV download instead, use `npm run import-members -- "responses.csv"` (add `--dry-run` to preview).
 
 ## Gig requests
 

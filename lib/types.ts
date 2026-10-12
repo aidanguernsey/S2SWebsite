@@ -17,6 +17,7 @@ export type Member = {
   classYear: number;
   major?: string;
   minor?: string;
+  job?: string; // current job or industry, mostly for alumni
   hometown?: string;
   execRole?: string; // e.g. "President" — leave out if not on exec
   photo?: string; // image URL (Sanity CDN, or a path under /public)

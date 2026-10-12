@@ -47,6 +47,7 @@ export default async function MemberProfile({ params }: Props) {
     member.execRole && { label: "Exec role", value: member.execRole },
     member.major && { label: "Major", value: member.major },
     member.minor && { label: "Minor", value: member.minor },
+    member.job && { label: "Job / industry", value: member.job },
     member.hometown && { label: "Hometown", value: member.hometown },
   ].filter(Boolean) as { label: string; value: string | number }[];
 
