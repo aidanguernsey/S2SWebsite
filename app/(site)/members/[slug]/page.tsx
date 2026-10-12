@@ -49,7 +49,8 @@ export default async function MemberProfile({ params }: Props) {
     },
     { label: member.status === "alumni" ? "Class of" : "Class year", value: member.classYear },
     member.yearJoined && { label: "Joined", value: member.yearJoined },
-    member.semesters && { label: "Semesters in S2S", value: member.semesters },
+    // Only alumni: for current members the form answer goes stale.
+    member.status === "alumni" && member.semesters && { label: "Semesters in S2S", value: member.semesters },
     member.execRole && { label: "Exec role", value: member.execRole },
     pastExecRoles.length > 0 && { label: "Past exec roles", value: pastExecRoles.join(", ") },
     member.major && { label: member.major.includes(",") ? "Majors" : "Major", value: member.major },

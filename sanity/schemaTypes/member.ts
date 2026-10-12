@@ -37,7 +37,7 @@ export const member = defineType({
     }),
     defineField({ name: "classYear", title: "Class year", type: "number", validation: (r) => r.required().integer().min(1990).max(2100) }),
     defineField({ name: "yearJoined", title: "Year joined", type: "number", validation: (r) => r.integer().min(1990).max(2100) }),
-    defineField({ name: "semesters", title: "Semesters in Soul2Soul", type: "number", validation: (r) => r.integer().min(1).max(20) }),
+    defineField({ name: "semesters", title: "Semesters in Soul2Soul", description: "Only shown on alumni profiles.", type: "number", validation: (r) => r.integer().min(1).max(20) }),
     defineField({
       name: "performedVP",
       title: "Performed vocal percussion",
