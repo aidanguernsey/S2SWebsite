@@ -128,5 +128,30 @@
     "favoriteArrangement": "Muse Medley",
     "favoriteMemory": "Foos Ball",
     "voicePart": "Tenor III"
+  },
+  {
+    "slug": "theodore-errig",
+    "name": "Theodore Errig",
+    "status": "alumni",
+    "voicePart": "Tenor II",
+    "classYear": 2025,
+    "yearJoined": 2021,
+    "semesters": 8,
+    "performedVP": false,
+    "pastExecRoles": [
+      "Social Chair"
+    ],
+    "major": "International Studies",
+    "minor": "History, Anthropology",
+    "job": "Bartender",
+    "hometown": "Summit, New Jersey",
+    "solos": [
+      "Caravan",
+      "Go the Distance (Disney Medley)",
+      "I Forget the Song Name (Muse Medley)"
+    ],
+    "funFact": "Inventor of Milker High Life (half high life half whole milk)",
+    "favoriteArrangement": "Proud Mary",
+    "favoriteMemory": "Poker nights at the Cock junior year/Jack Danko"
   }
 ]
