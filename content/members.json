@@ -153,5 +153,20 @@
     "funFact": "Inventor of Milker High Life (half high life half whole milk)",
     "favoriteArrangement": "Proud Mary",
     "favoriteMemory": "Poker nights at the Cock junior year/Jack Danko"
+  },
+  {
+    "slug": "justin-mckay",
+    "name": "Justin McKay",
+    "status": "alumni",
+    "voicePart": "Tenor II",
+    "classYear": 2015,
+    "yearJoined": 2010,
+    "performedVP": false,
+    "pastExecRoles": [
+      "Music Director"
+    ],
+    "major": "Music Education",
+    "job": "Software Engineer",
+    "hometown": "Great Falls, Virginia"
   }
 ]
