@@ -168,5 +168,33 @@
     "major": "Music Education",
     "job": "Software Engineer",
     "hometown": "Great Falls, Virginia"
+  },
+  {
+    "slug": "james-boyle",
+    "name": "James Boyle",
+    "status": "current",
+    "voicePart": "Tenor III",
+    "classYear": 2028,
+    "yearJoined": 2024,
+    "semesters": 5,
+    "performedVP": false,
+    "execRole": "Treasurer",
+    "pastExecRoles": [
+      "Treasurer"
+    ],
+    "major": "Physics",
+    "minor": "Mathematics",
+    "job": "Nah",
+    "hometown": "Morrow, Ohio",
+    "bio": "James Boyle is Junior Physics major and mathematics minor, and is serving his second year as Treasurer. He’s been singing since middle school and Soul2Soul is one of the best communities he has ever been a part of. Every member of this group is a good friend and he is excited to see what the rest of his time in Soul2Soul has in store!",
+    "solos": [
+      "Dracula",
+      "Spiderverse Medley - Mona Lisa",
+      "Harry Styles Medley - Canyon Moon",
+      "Weekend Medley - Die For You"
+    ],
+    "funFact": "He is also on SketchedOut, the Miami Improv team!",
+    "favoriteArrangement": "Saturn",
+    "favoriteMemory": "Going to Lake Norris, Tennessee during freshman year formal"
   }
 ]
