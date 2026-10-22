@@ -196,5 +196,81 @@
     "funFact": "He is also on SketchedOut, the Miami Improv team!",
     "favoriteArrangement": "Saturn",
     "favoriteMemory": "Going to Lake Norris, Tennessee during freshman year formal"
+  },
+  {
+    "slug": "colby-beck",
+    "name": "Colby Beck",
+    "status": "current",
+    "voicePart": "Tenor II",
+    "classYear": 2029,
+    "yearJoined": 2025,
+    "semesters": 3,
+    "performedVP": false,
+    "execRole": "Business Director",
+    "major": "Psychology",
+    "minor": "Sports Management",
+    "hometown": "Columbus, Ohio",
+    "bio": "Colby is currently a sophomore Psychology major, Sports Management minor. He is from Columbus, OH, and currently serve as the Business Director of Soul2Soul A Cappella! Colby has been singing all his life and was so excited to continue his passion here at Miami! Soul2Soul are truly Colby’s best friends and he always loves to hang out with them outside of all the rehearsals, gigs, and performances!",
+    "funFact": "Colby’s first time leaving the country was a trip to South Africa",
+    "favoriteArrangement": "Misnomer",
+    "favoriteMemory": "Our first alumni reunion in May 2026, it was awesome to meet so many alumni and hear their stories"
+  },
+  {
+    "slug": "hunter-bolton",
+    "name": "Hunter Bolton",
+    "status": "current",
+    "voicePart": "Bass",
+    "classYear": 2029,
+    "yearJoined": 2025,
+    "semesters": 2,
+    "performedVP": false,
+    "major": "Business Econ and a Fashion co-major",
+    "minor": "Art Therapy",
+    "job": "Student",
+    "hometown": "Bellbrook",
+    "bio": "Hunter is a business student, painter, and aspiring model. He first became a part of Soul2Soul with no prior music experience but an eagerness to learn and has grown into a solid lower split bass with Jerod’s guidance. Coming into college, he had no idea he would be singing but a cappella has quickly become an integral part of his college experience and he is always looking to improve and help others.",
+    "solos": [
+      "Dare",
+      "gorillaz medley"
+    ],
+    "funFact": "I did my first magazine shoot this fall semester",
+    "favoriteArrangement": "Either gorillaz medely or Jerod’s senior song",
+    "favoriteMemory": "Freshman year fall retreat 😜"
+  },
+  {
+    "slug": "liam-moore",
+    "name": "Liam Moore",
+    "status": "current",
+    "voicePart": "Baritone",
+    "classYear": 2029,
+    "yearJoined": 2025,
+    "semesters": 3,
+    "performedVP": true,
+    "major": "Urban and Regional Planning and Co-Major in Sustainability",
+    "minor": "GIS Certificate",
+    "hometown": "Kettering, Ohio",
+    "bio": "Liam is a sophomore Urban Planning and Sustainability major at Miami University. He has been in A Capella since his sophomore year in high school and has sung all his life. Soul2Soul is a part of the backbone of his college life, and he loves the community A Cappella brings!",
+    "funFact": "My hometown high school hosts a major A Cappella festival, bringing in high school groups from all over the country, and hosts a professional A Cappella group!",
+    "favoriteArrangement": "Good Old-Fashioned Lover Boy- Queen",
+    "favoriteMemory": "UC Invitationals"
+  },
+  {
+    "slug": "henry-chesterton",
+    "name": "Henry Chesterton",
+    "status": "current",
+    "voicePart": "Tenor II",
+    "classYear": 2030,
+    "yearJoined": 2026,
+    "semesters": 1,
+    "performedVP": false,
+    "major": "Business undeclared, entrepreneurship",
+    "hometown": "Grosse Pointe Michigan",
+    "bio": "Henry is a freshman Business major at Miami University and a Tenor 2 in Soul2Soul A Cappella! He has been singing his entire life, starting with his first music class at just two years old alongside his mom. Although he has only been a member of Soul2Soul for one semester, he has already made great friendships and memories with the group. He is excited to continue growing as a singer and making the most of his next few years with Soul2Soul!",
+    "solos": [
+      "Bruno Mars Medley"
+    ],
+    "funFact": "I sang bass in high school.",
+    "favoriteArrangement": "Lost in Japan",
+    "favoriteMemory": "Getting the call that I got into soul2soul"
   }
 ]
