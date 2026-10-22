@@ -272,5 +272,30 @@
     "funFact": "I sang bass in high school.",
     "favoriteArrangement": "Lost in Japan",
     "favoriteMemory": "Getting the call that I got into soul2soul"
+  },
+  {
+    "slug": "aydin-davis-ad-wilhelm",
+    "name": "Aydin Davis \"AD\" Wilhelm",
+    "status": "current",
+    "voicePart": "Baritone",
+    "classYear": 2028,
+    "yearJoined": 2025,
+    "semesters": 3,
+    "performedVP": false,
+    "execRole": "N/A",
+    "pastExecRoles": [
+      "N/A"
+    ],
+    "major": "Business Analytics",
+    "minor": "Entrepreneurship",
+    "job": "Tutor",
+    "hometown": "Mason, OH",
+    "bio": "AD is in his second semester as Assistant Music Director of Soul2Soul A Cappella. A musician for 12 years, he spent most of them as a double bassist before turning to voice two years ago. After hearing about Soul2Soul through the Miami University Glee Club, he auditioned on a whim, driven mostly by a desire to improve his singing. Stepping outside his comfort zone led to one of his best adventures and lifelong friends.",
+    "solos": [
+      "Gorillaz Medley (Empire Ants)"
+    ],
+    "funFact": "I read Harry Potter and the Deathly Hallows in one day!",
+    "favoriteArrangement": "Birds of a Feather",
+    "favoriteMemory": "Fall All-Stars 2026 After Party"
   }
 ]
