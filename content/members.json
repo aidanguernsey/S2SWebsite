@@ -297,5 +297,31 @@
     "funFact": "I read Harry Potter and the Deathly Hallows in one day!",
     "favoriteArrangement": "Birds of a Feather",
     "favoriteMemory": "Fall All-Stars 2026 After Party"
+  },
+  {
+    "slug": "christopher-barger",
+    "name": "Christopher Barger",
+    "status": "alumni",
+    "voicePart": "Baritone",
+    "classYear": 2014,
+    "yearJoined": 2012,
+    "semesters": 4,
+    "performedVP": false,
+    "pastExecRoles": [
+      "N/A"
+    ],
+    "major": "Creative Writing",
+    "minor": "Theater",
+    "job": "I'm a writer and voice actor for cartoons and video games!",
+    "hometown": "Cincinnati, Ohio",
+    "bio": "Christopher Barger is a graduate of Miami University and was one of the original members of Soul2Soul. He grew up outside of Cincinnati, Ohio and was always singing in some kind of school choir from age 12 up until graduating from Miami in 2014. Following graduation, he moved to Los Angeles in 2015 to work in entertainment. After years of assistant jobs and working at a production company reception desk, he wrote two episodes for the Netflix series 'Samurai Rabbit: The Usagi Chronicles' before being cast as Archangel, the winged blue member of the X-Force in Marvel Animation's X-Men '97 on Disney+.\n\nHe's beyond excited Soul2Soul is continuing the tradition of a cappella excellence, and can't wait to hear what comes next.",
+    "solos": [
+      "Wagon Wheel",
+      "EDM Medley (Latch; live version)",
+      "Insomniac"
+    ],
+    "funFact": "Emily Dickinson is my cousin. Seriously.",
+    "favoriteArrangement": "The cover of 'As' by Stevie Wonder was something really special.",
+    "favoriteMemory": "Getting to record that very first Soul2Soul album was a blast. I think back to those couple days rotating in-and-out of that recording booth with everyone very, very fondly."
   }
 ]
