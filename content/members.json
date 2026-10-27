@@ -323,5 +323,49 @@
     "funFact": "Emily Dickinson is my cousin. Seriously.",
     "favoriteArrangement": "The cover of 'As' by Stevie Wonder was something really special.",
     "favoriteMemory": "Getting to record that very first Soul2Soul album was a blast. I think back to those couple days rotating in-and-out of that recording booth with everyone very, very fondly."
+  },
+  {
+    "slug": "james-jimmy-tolbert",
+    "name": "James 'Jimmy' Tolbert",
+    "status": "current",
+    "voicePart": "Baritone",
+    "classYear": 2029,
+    "yearJoined": 2026,
+    "semesters": 2,
+    "performedVP": false,
+    "major": "Media and Communications, Film Studies",
+    "minor": "Arts Management and Entrepreneurship",
+    "hometown": "Worthington, Ohio",
+    "bio": "Jimmy is a Sophomore Media and Communications and Film Studies co-major, and an Arts Management and Entrepreneurship minor. He has been singing in choirs since middle school, but only started a cappella at Miami. Soul2Soul has become a group of some of his closest friends and has made his time at Miami even better. He loves being apart a cappella community and is so excited for the continuing lifetime friendships to be made at Soul2Soul!",
+    "funFact": "Jimmy's favorite films are Mulholland Drive, La La Land, Eternal Sunshine of the Spotless Mind, The Nice Guys, and Sunset Boulevard",
+    "favoriteArrangement": "Gorilliaz Medley",
+    "favoriteMemory": "The spring Soul2Soul formal trip to Lake Norris, Tennessee, in 2026"
+  },
+  {
+    "slug": "jack-danko",
+    "name": "Jack Danko",
+    "status": "current",
+    "voicePart": "Baritone",
+    "classYear": 2027,
+    "yearJoined": 2024,
+    "semesters": 5,
+    "performedVP": true,
+    "execRole": "Director of Brotherhood",
+    "pastExecRoles": [
+      "Assistant Social Chair (appointed)"
+    ],
+    "major": "Data Analytics - Sports Concentration",
+    "minor": "Theatre",
+    "hometown": "Orrville, Ohio",
+    "bio": "Jack Danko is a third year Data Analytics major with a sports concentration, and a Theatre Minor. He is currently the group’s Director of Brotherhood and previously served as the Assistant Social Chair. Outside of Soul2Soul, Jack is apart of the Phi Kappa Tau fraternity in which he serves as the Social Committee’s Event Manager, and is apart of several other committees. He is also a model for MUF&D, and is apart of the Scene Shop crew for the Theatre Department at Miami, helping build sets. In his free time, he enjoys lifting, playing basketball or soccer, and spending time with his friends in any way he can. He loves the a cappella community and is excited to see what Soul2Soul can do during the rest of his time in the group!",
+    "solos": [
+      "Ophelia (Ho Hey)",
+      "Spiderverse Medley (Home)",
+      "Gorillaz Medley (Rhinestone Eyes)",
+      "Twenties"
+    ],
+    "funFact": "I was in Shooting Stars (2023) and Superman (2025) as an extra.",
+    "favoriteArrangement": "Spiderverse Medley",
+    "favoriteMemory": "Spring Formal 26’"
   }
 ]
