@@ -5,17 +5,30 @@
     "voicePart": "Tenor I",
     "status": "current",
     "classYear": 2028,
-    "major": "Biochemistry",
+    "major": "Biochemistry and premedical studies",
     "hometown": "Livonia, NY",
     "execRole": "President",
     "photo": "/members/sean-spezzano.jpg",
-    "bio": "[A few sentences in Sean's own words: how he found the group, favorite arrangement, what he does outside of singing.]",
+    "bio": "Sean is a junior from Livonia, NY, majoring in biochemistry and premedical studies, as well as minoring in Spanish and global health. Since joining Soul2Soul in Fall 2024, he has served as the group's PR Director (2025) and President (2026). Sean could not be more grateful for his time in Soul2Soul and the connections he has made with fellow members and a cappella peers, and he looks forward to making the most of his remaining time with the group!",
     "solos": [
-      "Good Old-Fashioned Lover Boy",
-      "Movin' Out",
-      "Virtual Insanity"
+      "- Weeknd Medley (Earned It)",
+      "- Cold as Ice",
+      "- Good Old-Fashioned Lover Boy",
+      "- Into the Spiderverse Medley (Am I Dreaming)",
+      "- Movin’ Out",
+      "- Virtual Insanity"
     ],
-    "funFact": "Sean is studying abroad in London next Fall!"
+    "funFact": "I’m an identical twin!",
+    "yearJoined": 2024,
+    "semesters": 5,
+    "performedVP": false,
+    "pastExecRoles": [
+      "PR Director (2025)"
+    ],
+    "minor": "Spanish and Global Health",
+    "job": "N/A",
+    "favoriteArrangement": "Saturn",
+    "favoriteMemory": "Annual formal trips to Norris Lake, Tennessee!"
   },
   {
     "slug": "aidan-guernsey",
@@ -367,5 +380,52 @@
     "funFact": "I was in Shooting Stars (2023) and Superman (2025) as an extra.",
     "favoriteArrangement": "Spiderverse Medley",
     "favoriteMemory": "Spring Formal 26’"
+  },
+  {
+    "slug": "mason-frazee",
+    "name": "Mason Frazee",
+    "status": "current",
+    "voicePart": "Tenor I",
+    "classYear": 2030,
+    "yearJoined": 2026,
+    "semesters": 1,
+    "performedVP": false,
+    "execRole": "N/A",
+    "pastExecRoles": [
+      "N/A"
+    ],
+    "major": "Engineering Management",
+    "minor": "Naval Science",
+    "job": "Sales associate at Play it Again Sport",
+    "hometown": "Canton, Ohio",
+    "bio": "Mason is a freshman studying Engineering Management and is so excited for what’s to come with Soul2Soul! He has been involved in choir all four years of high school, along with show choir and two years of theatre. He loves being able to sing and perform while making new friends and being part of such an amazing community. He’s excited to make memories, grow as a performer, and see what the next few years with Soul2Soul have in store!",
+    "funFact": "I played a lead role in Grease: The Musical in high school.",
+    "favoriteArrangement": "Bruno Mars Medley",
+    "favoriteMemory": "Building the Soul2Soul die table."
+  },
+  {
+    "slug": "jon-jay-moore",
+    "name": "Jon Jay Moore",
+    "status": "current",
+    "voicePart": "Tenor III",
+    "classYear": 2030,
+    "yearJoined": 2026,
+    "semesters": 1,
+    "performedVP": false,
+    "execRole": "N/A",
+    "pastExecRoles": [
+      "N/A"
+    ],
+    "major": "Biochemistry and Vocal Performance Pre Med",
+    "minor": "N/A",
+    "job": "Founder of Moore Tutoring Solutions",
+    "hometown": "Lexington, Kentucky",
+    "bio": "Jon Jay Moore is a first-year Presidential Fellow at Miami University from Lexington, Kentucky, studying Biochemistry and Vocal Performance. He also sings with the Miami University Men's Glee Club. Outside of music, Jon Jay is a powerlifter, climber, and business owner.",
+    "solos": [
+      "N/A"
+    ],
+    "funFact": "I am an Eagle Scout",
+    "favoriteArrangement": "Bruno Mars Medley",
+    "favoriteMemory": "Foosball at initiation"
   }
 ]
