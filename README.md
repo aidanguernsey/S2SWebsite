@@ -2,7 +2,7 @@
 
 The official site for Soul2Soul, Miami University's premier tenor-bass a cappella group: music and videos, upcoming concerts, merch, gig booking, group history, and a profile page for every current member and alum.
 
-Built with **Next.js (App Router) + TypeScript**. Content (members, events, releases, merch, group info) is edited in **[Sanity](https://www.sanity.io) Studio** at `/studio` on the site itself, so exec can update the site from a browser without touching code.
+Built with **Next.js (App Router) + TypeScript**. Content (members, events, releases, group info) is edited in **[Sanity](https://www.sanity.io) Studio** at `/studio` on the site itself, so exec can update the site from a browser without touching code. Merch is managed in **[Fourthwall](https://fourthwall.com)**, which also handles checkout (see [Shop](#shop)).
 
 ## Getting started
 
@@ -27,13 +27,15 @@ app/
       [slug]/            /members/jane-doe — individual profile pages
     alumni/              /alumni — alumni by class year
     about/               /about — history timeline
-    shop/                /shop — merch
+    shop/                /shop — merch from Fourthwall; actions.ts holds the cart's Server Actions
+      [slug]/            /shop/script-hoodie — individual product pages
     book/                /book — gig request form
   studio/                /studio — Sanity Studio, the content editor
   api/gig-request/       POST endpoint the booking form submits to
   api/revalidate/        Sanity webhook: refreshes the site on publish
 components/              Reusable UI pieces
 lib/content.ts           Fetches content from Sanity (or content/ as a fallback)
+lib/fourthwall.ts        Talks to Fourthwall: products, carts, checkout links (server only)
 lib/types.ts             The shape of each content type
 sanity/schemaTypes/      The fields exec sees in the Studio
 sanity.config.ts         Studio setup (sidebar, singleton site settings)
@@ -55,10 +57,11 @@ Everything is edited at **`/studio`** (e.g. `https://s2swebsite.vercel.app/studi
 | New album, EP, or single | **Music & videos → +**. Pick the **Type**, paste the Spotify link to the whole release, then add each song under **Tracks** in track-list order. Give each track its YouTube link and/or Spotify track link: with no YouTube link, it shows a Spotify player. The Music page groups releases into Albums, EPs, and Singles, and the homepage shows the newest tracks. Turn on **Pin to homepage** to feature an older release. |
 | New video for an existing song | Open the release, open the track under **Tracks**, and paste its YouTube link. |
 | Video of a song that isn't released yet | **Not yet on streaming → +**. Paste the YouTube link and the date it was posted. It's listed at the bottom of the Music page, newest first. Once the song comes out, add it to its release and delete it here. |
-| New merch | **Merch → +** with a **Buy link**. |
 | Group info, socials, booking, history | **Site settings**. |
 
 Please get each person's OK on their bio and photo before publishing, and let alumni opt out.
+
+Merch isn't edited here: products, prices, and photos are managed in the Fourthwall dashboard. See [Shop](#shop).
 
 > Note: `exec` is a reserved URL under `/members`, so the Studio won't let you give a member that Profile URL.
 
@@ -111,12 +114,43 @@ Every request can also be added as a row in a Google Sheet, via a small Apps Scr
 
 The header row is added automatically on the first request. Email and the sheet are independent: the visitor only sees an error if every configured destination fails. Keep the `/exec` URL private, since anyone who has it can add rows. If you edit the script later, use **Deploy → Manage deployments → Edit → Version: New version** so the same URL picks up the change.
 
-## Merch checkout
+## Shop
 
-There's deliberately no custom payment code. Each merch item's **Buy link** points to a hosted checkout:
+Merch is print-on-demand through [Fourthwall](https://fourthwall.com), so the group never holds inventory. The site shows the products and keeps a cart; payment, shipping, tax, and returns all happen on Fourthwall's hosted checkout. No card details ever touch this site.
 
-- **Stripe Payment Links:** create a product in Stripe and paste its payment link.
-- **Printful / Fourthwall / Shopify:** print-on-demand, so the group never holds inventory.
+### Managing merch
+
+Everything happens in the Fourthwall dashboard, not in the Studio:
+
+| Task | What to do in Fourthwall |
+| --- | --- |
+| New product | **Products → Add product**. Set it to public and it appears on `/shop` within a minute. |
+| Stage a drop | Create it as **hidden**: it stays off the site (even by direct URL) until you make it public. |
+| Prices, photos, sizes, colors | Edit the product. Each color's photos show when that color is picked. |
+| Product URL | `/shop/<slug>` uses the product's Fourthwall URL. To change it: open the product, **⋯ → Change URL**. Avoid changing it once the link has been shared: the old URL will 404. |
+
+### Setting up the shop (once)
+
+1. In Fourthwall, go to **Settings → For developers → Storefront API → Create token**.
+2. Set `FOURTHWALL_STOREFRONT_TOKEN` to it, and `FOURTHWALL_SHOP_DOMAIN` to the store's domain from **Settings → Domain** (e.g. `soul2soul-shop.fourthwall.com`), in `.env.local` and on Vercel. Never give the token a `NEXT_PUBLIC_` prefix.
+
+Make sure the Fourthwall account (like Vercel and Sanity) belongs to the group's shared account, or has at least two current members as admins, so it survives officer handoffs.
+
+### If the shop breaks
+
+The site never shows a broken shop: if Fourthwall can't be reached, `/shop` shows a **Shop on our store** button linking to the Fourthwall store instead. If that's what you see:
+
+- **Token revoked or regenerated:** create a new token (step 1 above), paste it into Vercel's environment variables, and redeploy. That's also how to rotate it.
+- **Store domain changed:** update `FOURTHWALL_SHOP_DOMAIN` the same way.
+- **Fourthwall changed their API:** everything that talks to Fourthwall is in `lib/fourthwall.ts`, so that's the only file to fix. The server log (Vercel → Logs) shows lines starting with `Shop:`.
+
+Once a semester, or before a big drop, place a real test order through the site and refund it in Fourthwall.
+
+### How it works
+
+- `lib/fourthwall.ts` reads products (cached for a minute) and edits carts. It's server-only, so the token never reaches the browser.
+- The cart's ID lives in an `httpOnly` cookie. The browser only ever sends a variant ID and a quantity to the Server Actions in `app/(site)/shop/actions.ts`; prices always come from Fourthwall.
+- Checkout redirects to `https://<FOURTHWALL_SHOP_DOMAIN>/checkout/?cartId=…`.
 
 Check with your student activities office about how student organizations may collect money before going live.
 

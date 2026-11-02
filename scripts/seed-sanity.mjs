@@ -11,7 +11,6 @@ import { site } from "../content/site.ts";
 import { members } from "../content/members.ts";
 import { events } from "../content/events.ts";
 import { releases } from "../content/releases.ts";
-import { merch } from "../content/merch.ts";
 import { schoolTimeToIso } from "../lib/time.ts";
 
 const dryRun = process.argv.includes("--dry-run");
@@ -50,7 +49,7 @@ async function image(publicPath) {
 }
 
 if (!dryRun && !force) {
-  const existing = await client.fetch(`count(*[_type in ["siteSettings", "member", "event", "release", "merchItem"]])`);
+  const existing = await client.fetch(`count(*[_type in ["siteSettings", "member", "event", "release"]])`);
   if (existing > 0) {
     console.error(`Sanity already has ${existing} documents. Re-run with --force to overwrite the seeded ones.`);
     process.exit(1);
@@ -81,9 +80,6 @@ const docs = [
       tracks: keyed(r.tracks.map(({ youtubeId, ...t }) => compact({ _type: "track", ...t, youtube: youtubeId }))),
     })
   ),
-  ...(await Promise.all(
-    merch.map(async (p) => compact({ _id: `merch-${toId(p.name)}`, _type: "merchItem", ...p, image: await image(p.image) }))
-  )),
 ];
 
 if (dryRun) {

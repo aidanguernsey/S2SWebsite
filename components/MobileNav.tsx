@@ -77,7 +77,7 @@ const morePages = [
   {
     href: "/shop",
     label: "Shop",
-    sub: "Merch and albums",
+    sub: "Merch",
     svg: (
       <>
         <path d="M6 7h12l-1 13H7z" />

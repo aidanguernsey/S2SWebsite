@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getReleases, getSite, getVideos, releaseAnchor, UNRELEASED_ANCHOR } from "@/lib/content";
 import { AutoHideHeader } from "./AutoHideHeader";
+import { CartBar, CartButton, CartDrawer } from "./CartDrawer";
+import { CartProvider } from "./CartProvider";
 import { MobileNav } from "./MobileNav";
 import { restoreViewsScript } from "./ViewToggle";
 
@@ -21,7 +23,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
   ].filter((s): s is { href: string; label: string } => !!s.href);
 
   return (
-    <>
+    <CartProvider>
       {/* Restores each visitor's icons/list choice before first paint (phones only). */}
       <script dangerouslySetInnerHTML={{ __html: restoreViewsScript }} />
       <AutoHideHeader>
@@ -97,6 +99,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
             </div>
             <Link href="/about">About</Link>
             <Link href="/shop">Shop</Link>
+            <CartButton />
             <Link href="/book" className="btn btn-accent">
               Book us
             </Link>
@@ -105,6 +108,8 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
       </AutoHideHeader>
 
       <main>{children}</main>
+      <CartDrawer />
+      <CartBar />
 
       <footer className="site-footer">
         <div className="container">
@@ -127,6 +132,6 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
       </footer>
 
       <MobileNav socials={socials} contactEmail={site.contactEmail} />
-    </>
+    </CartProvider>
   );
 }

@@ -3,12 +3,11 @@
 import { defineQuery } from "next-sanity";
 import { client } from "@/sanity/client";
 import { schoolTimeToIso } from "@/lib/time";
-import type { Event, Member, MerchItem, Release, Site, Track, Video } from "@/lib/types";
+import type { Event, Member, Release, Site, Track, Video } from "@/lib/types";
 import { site as localSite } from "@/content/site";
 import { members as localMembers } from "@/content/members";
 import { events as localEvents } from "@/content/events";
 import { releases as localReleases } from "@/content/releases";
-import { merch as localMerch } from "@/content/merch";
 
 // Cached for a minute; the /api/revalidate webhook clears it on every publish.
 export const CACHE_TAG = "sanity";
@@ -49,10 +48,6 @@ const VIDEOS_QUERY = defineQuery(`*[_type == "video" && defined(youtube)] | orde
   title, "youtubeId": youtube, date, arranger, soloists
 }`);
 
-const MERCH_QUERY = defineQuery(`*[_type == "merchItem"] | order(_createdAt asc){
-  name, price, ${photoUrl("image", 800)}, buyUrl, sizes
-}`);
-
 export async function getSite(): Promise<Site> {
   if (!client) return localSite;
   const site = await fetchSanity<Partial<Site> | undefined>(SITE_QUERY);
@@ -87,11 +82,6 @@ export async function getVideos(): Promise<Video[]> {
   if (!client) return [];
   const videos = await fetchSanity<Video[]>(VIDEOS_QUERY);
   return videos.map((v) => ({ ...v, youtubeId: youtubeId(v.youtubeId)! }));
-}
-
-export async function getMerch(): Promise<MerchItem[]> {
-  if (!client) return localMerch;
-  return fetchSanity<MerchItem[]>(MERCH_QUERY);
 }
 
 // Editors can paste a whole YouTube link; the embed only needs the video ID.

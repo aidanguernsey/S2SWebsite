@@ -1,23 +1,33 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { getProducts } from "@/lib/fourthwall";
+import { ProductCard } from "@/components/ProductCard";
+import { ShopFallback } from "@/components/ShopFallback";
 
 export const metadata: Metadata = { title: "Shop" };
 
-// Placeholder until the Shopify store is set up. The previous product grid
-// (driven by getMerch()) is in git history.
-export default function ShopPage() {
+// Products are managed in the Fourthwall dashboard; anything public there shows here
+// within a minute. Hidden products stay off the site.
+export default async function ShopPage() {
+  const products = await getProducts();
+  if (!products) return <ShopFallback />;
+
   return (
     <div className="container">
       <div className="page-title">
         <h1>Merch</h1>
-        <p className="lede">-COMING SOON-</p>
-        <p style={{ marginTop: 16 }}>
-          Our merch store is on the way. Every purchase will support recordings, travel and competitions.
+        <p className="lede">
+          Every purchase supports recordings, travel and competitions. Printed to order and shipped by Fourthwall.
         </p>
-        <div style={{ marginTop: 32 }}>
-          <Link href="/" className="btn btn-dark">Back to home</Link>
-        </div>
       </div>
+      {products.length > 0 ? (
+        <div className="shop-grid">
+          {products.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+      ) : (
+        <p style={{ marginTop: 32 }}>New merch is on the way. Check back soon.</p>
+      )}
     </div>
   );
 }

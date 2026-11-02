@@ -72,16 +72,6 @@ export type Video = Track & {
   date: string; // when it was posted, "2025-11-21"
 };
 
-export type MerchItem = {
-  name: string;
-  price: string;
-  image?: string;
-  // A Stripe Payment Link or Printful/Shopify product URL.
-  // No custom checkout code needed — see README.
-  buyUrl?: string;
-  sizes?: string[];
-};
-
 export type Site = {
   name: string;
   shortName: string; // shown in the round logo badge
@@ -103,4 +93,46 @@ export type Site = {
     rates?: string;
   };
   history: { year: string; title: string; text: string }[];
+};
+
+// ---- Shop ----
+// Products and carts come from Fourthwall (lib/fourthwall.ts maps their API into these).
+
+export type Money = { value: number; currency: string };
+
+export type ShopImage = { url: string; width: number; height: number };
+
+export type ShopVariant = {
+  id: string;
+  name: string; // e.g. "Black, M"
+  price: Money; // can differ by size (2XL and up often cost more)
+  compareAtPrice?: Money; // the "was" price during a sale
+  color?: { name: string; swatch: string }; // swatch is a hex color
+  size?: string;
+  inStock: boolean;
+  images: ShopImage[]; // photos of this color
+};
+
+export type ShopProduct = {
+  id: string;
+  slug: string; // used in the URL: /shop/<slug>
+  name: string;
+  description?: string; // HTML, written in the Fourthwall dashboard
+  details: { title: string; html: string }[]; // fabric, fit, care, etc.
+  soldOut: boolean;
+  images: ShopImage[];
+  variants: ShopVariant[];
+};
+
+export type CartLine = {
+  product: { name: string; slug: string };
+  variant: ShopVariant;
+  quantity: number;
+};
+
+export type Cart = {
+  id: string;
+  lines: CartLine[];
+  count: number; // total items, for the header badge
+  subtotal: Money; // before shipping and tax, which Fourthwall adds at checkout
 };
