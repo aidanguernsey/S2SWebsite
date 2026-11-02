@@ -13,7 +13,7 @@ export default async function ExecPage() {
       <div className="page-title section-head">
         <div>
           <div className="title-row">
-            <h1>Executive board</h1>
+            <h1>Executive Board</h1>
             <ViewToggle section="members" />
           </div>
           <p className="lede">The people keeping the group running this year.</p>
