@@ -20,7 +20,7 @@ export const site: Site = {
     tiktok: "https://tiktok.com/",
   },
   booking: {
-    setLength: "[Typical set length, e.g. 15–30 minutes]",
+    setLength: "[Typical set length, e.g. 15-30 minutes]",
     travelArea: "[Travel area, e.g. within 50 miles of campus]",
     rates: "[Rates, or 'Contact us for pricing']",
   },
