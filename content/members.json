@@ -427,5 +427,55 @@
     "funFact": "I am an Eagle Scout",
     "favoriteArrangement": "Bruno Mars Medley",
     "favoriteMemory": "Foosball at initiation"
+  },
+  {
+    "slug": "dylan-meyers",
+    "name": "Dylan Meyers",
+    "status": "current",
+    "voicePart": "Tenor I",
+    "classYear": 2029,
+    "yearJoined": 2025,
+    "semesters": 3,
+    "performedVP": false,
+    "execRole": "Social Media Director",
+    "major": "Primary Education",
+    "minor": "Music Theater",
+    "hometown": "Brookville, Ohio",
+    "bio": "Dylan is a Sophomore Primary Education major and Music Theater minor, currently serving his first term as Social Media Director of Soul2Soul A Cappella! He has been involved in the arts since he was little and has been doing a cappella since high school. Soul2Soul has been his favorite part of his Miami experience. He loves all of the amazing people he’s met through a cappella and cannot wait for his next two years!",
+    "solos": [
+      "Harry Styles Medley (Sign of The Times)",
+      "Face To Face",
+      "Gorillaz Medley (Tomorrow Comes Today)",
+      "Dreams",
+      "Lost In Japan",
+      "Bruno Mars Medley (Grenade)",
+      "Story of My Life"
+    ],
+    "funFact": "Dylan has applied for the TV show Survivor three times with no plans to stop until he makes it on!",
+    "favoriteArrangement": "Dreams",
+    "favoriteMemory": "Soul2Soul Formal 2026"
+  },
+  {
+    "slug": "beckett-fuller",
+    "name": "Beckett Fuller",
+    "status": "current",
+    "voicePart": "Tenor I",
+    "classYear": 2029,
+    "yearJoined": 2025,
+    "semesters": 3,
+    "performedVP": false,
+    "major": "Supply Chain Operations Management & Urban and Regional Planning",
+    "minor": "Real Estate",
+    "hometown": "North Haven, CT",
+    "bio": "Beckett is a sophomore studying Supply Chain Management and Urban Planning. He has been singing since he was young, participating in both theater and choir throughout his life. Beckett was a member of the Young People’s Chorus of New York City, where he had the opportunity to perform alongside notable artists including Jason Mraz and Cynthia Erivo, as well as with Idina Menzel in the Macy’s Thanksgiving Day Parade. Although Beckett had never performed a cappella before college, he has really enjoyed the experience and is honored to be part of such a fantastic group of people in Soul2Soul. After college, he hopes to pursue a career in transit-oriented economic development throughout the United States.",
+    "solos": [
+      "Harry Styles Medley (Late Night Talking)",
+      "Spiderverse Medley (Sunflower)",
+      "Sour Candy",
+      "Story of My Life (Nial)"
+    ],
+    "funFact": "I have been to over 10 Broadway shows!",
+    "favoriteArrangement": "Spiderverse Medley",
+    "favoriteMemory": "Retreat friendsgiving and football game!"
   }
 ]
