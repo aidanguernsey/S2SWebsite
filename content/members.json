@@ -477,5 +477,56 @@
     "funFact": "I have been to over 10 Broadway shows!",
     "favoriteArrangement": "Spiderverse Medley",
     "favoriteMemory": "Retreat friendsgiving and football game!"
+  },
+  {
+    "slug": "nolan-miller",
+    "name": "Nolan Miller",
+    "status": "current",
+    "voicePart": "Baritone",
+    "classYear": 2027,
+    "yearJoined": 2023,
+    "semesters": 8,
+    "performedVP": false,
+    "execRole": "Alumni Relations Chair",
+    "pastExecRoles": [
+      "President",
+      "PR Director"
+    ],
+    "major": "Kinesiology, Individualized Studies: Community Health Strategy and Operations",
+    "hometown": "Dalton, OH",
+    "bio": "Nolan is a Senior Kinesiology and Community Health Strategy and Operations double major from Dalton, OH. He joined Soul2Soul in the Fall of 2023 and has served as the PR Director and President. In his free time, Nolan enjoys running, traveling, politics, cooking, and wellness. Outside of Soul2Soul, Nolan is the current Co-President of HAWKS Peer Health Educators and a member of Phi Kappa Tau Fraternity. His favorite band is Zolmon's Wolfgang! After graduation, Nolan plans to pursue a career in healthcare management. If you want to connect with Nolan, you can find him on LinkedIn!",
+    "solos": [
+      "Disney (Friends on the Other Side)",
+      "Harry Styles (Sunflower)",
+      "Spiderverse Medley (Calling)",
+      "The Christmas Song (It's The Most Wonderful Time)",
+      "Gorillaz Medley (Clint Eastwood)",
+      "Bruno Mars (Uptown Funk)"
+    ],
+    "funFact": "In 2011, Nolan witnessed the first wildebeest born into captivity in Virginia.",
+    "favoriteArrangement": "Disney Medley",
+    "favoriteMemory": "Nolan's favorite Soul2Soul memory was during Fall Retreat 2024, when Julian Lambe puked all over the bathroom door and in the spaghetti Brad Mraz made because Aaron Chavez told him he couldn't puke outside."
+  },
+  {
+    "slug": "rodney-buckets",
+    "name": "Rodney Buckets",
+    "status": "current",
+    "voicePart": "Tenor I",
+    "classYear": 2027,
+    "yearJoined": 2023,
+    "performedVP": true,
+    "pastExecRoles": [
+      "Director of Fine Shyt"
+    ],
+    "major": "Finance",
+    "minor": "He has never touched a minor wtf",
+    "hometown": "Blue Ball, Ohio",
+    "bio": "Rodney",
+    "solos": [
+      "Rodney"
+    ],
+    "funFact": "Rodney",
+    "favoriteArrangement": "Rodney",
+    "favoriteMemory": "Rodney"
   }
 ]
