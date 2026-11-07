@@ -528,5 +528,31 @@
     "funFact": "Rodney",
     "favoriteArrangement": "Rodney",
     "favoriteMemory": "Rodney"
+  },
+  {
+    "slug": "jerod-hargrave",
+    "name": "Jerod Hargrave",
+    "status": "current",
+    "voicePart": "Bass",
+    "classYear": 2027,
+    "yearJoined": 2022,
+    "semesters": 8,
+    "performedVP": false,
+    "execRole": "None",
+    "pastExecRoles": [
+      "Music director social chair"
+    ],
+    "major": "Vocal performance arts management",
+    "minor": "None",
+    "hometown": "Kettering Ohio",
+    "bio": "Jerod Hargrave is a senior studying Musical Performance for Voice and Arts Management. Jerod is from Dayton, Ohio, and joined the group in the Fall of 2022. He served as the music director for 1 year. And is the current interm music director. Jerod is also a part of the Miami Men’s Glee Club, chamber singers, and the Miami Smash Club. Jerod has a long history of a cappella and is loves to sing with such a great group of people. Jerod Hargrave is a junior arts management and vocal performance major at Miami University from Kettering, Ohio joined soul2soul in the fall of 2022 and spent 1 year.",
+    "solos": [
+      "Spiderverse medley Annihilate.",
+      "Disney go the distance",
+      "Gorillas medley"
+    ],
+    "funFact": "Perfect pitch. Backflips",
+    "favoriteArrangement": "Spiderverse or muse medley",
+    "favoriteMemory": "Recording music over the break"
   }
 ]
